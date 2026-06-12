@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>영문주소 변환기 - 한글 주소를 영어로 (도로명/지번)</title>
+  <meta name="description" content="한글 주소를 영문 주소로 무료 변환. 도로명주소, 지번주소, 우편번호를 영어로 변환해 해외직구, 국제배송, 비자 신청에 바로 사용하세요.">
+  <meta name="keywords" content="영문주소변환, 영문주소, 주소 영어변환, 영문 도로명주소, english address korea, korean address converter">
+  <meta property="og:title" content="영문주소 변환기 - 한글 주소를 영어로">
+  <meta property="og:description" content="한글 주소를 영문 주소로 무료 변환. 해외직구·국제배송에 바로 사용.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://example.com/">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "영문주소 변환기",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "description": "한글 주소를 영문 주소로 변환하는 무료 도구",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
+  }
+  </script>
+  <!-- AdSense: 승인 후 아래 주석을 해제하고 ca-pub ID를 입력하세요
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  -->
+</head>
+<body>
+  <header>
+    <h1>영문주소 변환기</h1>
+    <p class="tagline">한글 주소를 입력하면 국제 표준 영문 주소로 바꿔드립니다</p>
+  </header>
+
+  <main>
+    <section class="search-box">
+      <form id="search-form" role="search">
+        <input type="text" id="keyword" name="keyword"
+               placeholder="예) 세종대로 110, 도곡동 467-1, 정부서울청사"
+               autocomplete="off" autofocus required minlength="2">
+        <button type="submit" id="search-btn">변환</button>
+      </form>
+      <p class="hint">도로명주소·지번주소·건물명 모두 검색 가능합니다.</p>
+    </section>
+
+    <!-- 광고 슬롯 (상단) -->
+    <aside class="ad-slot" id="ad-top" aria-hidden="true"></aside>
+
+    <section id="status" class="status" hidden></section>
+    <section id="results" class="results" aria-live="polite"></section>
+    <nav id="pagination" class="pagination" hidden>
+      <button id="prev-page" type="button">이전</button>
+      <span id="page-info"></span>
+      <button id="next-page" type="button">다음</button>
+    </nav>
+
+    <!-- 광고 슬롯 (하단) -->
+    <aside class="ad-slot" id="ad-bottom" aria-hidden="true"></aside>
+
+    <section class="seo-content">
+      <h2>영문주소는 언제 필요한가요?</h2>
+      <ul>
+        <li><strong>해외직구</strong> — 아마존, 이베이, 알리익스프레스 등 해외 쇼핑몰 배송지 입력</li>
+        <li><strong>국제배송·EMS</strong> — 해외에서 한국으로 물건을 받을 때</li>
+        <li><strong>비자·유학 서류</strong> — 영문 거주지 증명이 필요한 각종 서류</li>
+        <li><strong>해외 결제 빌링 주소</strong> — 해외 카드 결제 시 청구지 주소</li>
+      </ul>
+
+      <h2>영문주소 쓰는 법</h2>
+      <p>
+        한국식 주소는 큰 단위(시/도)부터 쓰지만, 영문주소는 반대로 작은 단위부터 씁니다.
+        예를 들어 <em>서울특별시 중구 세종대로 110</em>은
+        <em>110 Sejong-daero, Jung-gu, Seoul</em>이 됩니다.
+        상세주소(동·호수)는 맨 앞에 붙입니다. 예) <em>#101-1001, 110 Sejong-daero, …</em>
+      </p>
+
+      <h2>자주 묻는 질문</h2>
+      <h3>변환 결과는 공식적인 주소인가요?</h3>
+      <p>네. 행정안전부 도로명주소 공식 데이터(juso.go.kr)를 사용하므로 정부에서 고시한 공식 영문 표기입니다.</p>
+      <h3>아파트 동·호수는 어떻게 쓰나요?</h3>
+      <p>검색 결과의 영문주소 앞에 직접 붙여 쓰면 됩니다. 예) <em>Apt 102-1504,</em> 를 주소 맨 앞에 추가.</p>
+      <h3>우편번호도 알 수 있나요?</h3>
+      <p>네, 변환 결과에 5자리 우편번호가 함께 표시됩니다.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>주소 데이터 제공: 행정안전부 도로명주소 안내시스템 (juso.go.kr)</p>
+    <p>&copy; <span id="year"></span> 영문주소 변환기</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
