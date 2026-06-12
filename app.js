@@ -127,7 +127,142 @@
       if (juso.korAddr) card.appendChild(row("한글 주소", juso.korAddr, false));
       if (juso.zipNo) card.appendChild(row("우편번호", juso.zipNo, true));
 
+      card.appendChild(mallSection(juso));
       resultsEl.appendChild(card);
+    });
+  }
+
+  // ---- 쇼핑몰 입력 양식 매핑 ----
+  // 영문 도로명주소 "110 Sejong-daero, Jung-gu, Seoul" 형태를
+  // 마지막 항목 = State(시/도), 그 앞 = City(시/군/구), 나머지 = 거리 주소로 분해한다.
+  function parseEng(roadAddr) {
+    const parts = roadAddr.split(",").map(function (s) { return s.trim(); }).filter(Boolean);
+    if (parts.length >= 3) {
+      return {
+        line1: parts.slice(0, parts.length - 2).join(", "),
+        city: parts[parts.length - 2],
+        state: parts[parts.length - 1],
+      };
+    }
+    if (parts.length === 2) {
+      return { line1: parts[0], city: parts[1], state: parts[1] };
+    }
+    return { line1: roadAddr, city: "", state: "" };
+  }
+
+  const MALLS = [
+    {
+      name: "아마존",
+      fields: function (a, zip, detail) {
+        return [
+          ["Address Line 1", a.line1],
+          ["Address Line 2", detail],
+          ["City", a.city],
+          ["State / Province", a.state],
+          ["ZIP Code", zip],
+          ["Country", "South Korea"],
+        ];
+      },
+    },
+    {
+      name: "알리익스프레스",
+      fields: function (a, zip, detail) {
+        return [
+          ["Province", a.state],
+          ["City", a.city],
+          ["Street Address", a.line1 + (detail ? ", " + detail : "")],
+          ["ZIP Code", zip],
+          ["Country/Region", "South Korea"],
+        ];
+      },
+    },
+    {
+      name: "이베이",
+      fields: function (a, zip, detail) {
+        return [
+          ["Street address", a.line1],
+          ["Street address 2", detail],
+          ["City", a.city],
+          ["State/Province", a.state],
+          ["Postal code", zip],
+          ["Country", "Korea, South"],
+        ];
+      },
+    },
+    {
+      name: "아이허브",
+      fields: function (a, zip, detail) {
+        return [
+          ["주소 1", a.line1],
+          ["주소 2", detail],
+          ["도시", a.city],
+          ["지역", a.state],
+          ["우편번호", zip],
+        ];
+      },
+    },
+  ];
+
+  function mallSection(juso) {
+    const wrap = document.createElement("div");
+    wrap.className = "mall-section";
+
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "mall-toggle";
+    toggle.textContent = "쇼핑몰 입력 양식으로 보기 ▾";
+    wrap.appendChild(toggle);
+
+    const panel = document.createElement("div");
+    panel.className = "mall-panel";
+    panel.hidden = true;
+    wrap.appendChild(panel);
+
+    toggle.addEventListener("click", function () {
+      panel.hidden = !panel.hidden;
+      toggle.textContent = panel.hidden
+        ? "쇼핑몰 입력 양식으로 보기 ▾"
+        : "쇼핑몰 입력 양식 닫기 ▴";
+      if (!panel.hidden) renderMallPanel(panel, juso);
+    });
+
+    return wrap;
+  }
+
+  function renderMallPanel(panel, juso) {
+    panel.innerHTML = "";
+    const addr = parseEng(juso.roadAddr);
+    const detail = document.getElementById("detail").value.trim();
+
+    const tabs = document.createElement("div");
+    tabs.className = "mall-tabs";
+    const body = document.createElement("div");
+    body.className = "mall-fields";
+
+    MALLS.forEach(function (mall, i) {
+      const tab = document.createElement("button");
+      tab.type = "button";
+      tab.textContent = mall.name;
+      tab.className = i === 0 ? "active" : "";
+      tab.addEventListener("click", function () {
+        tabs.querySelectorAll("button").forEach(function (b) { b.className = ""; });
+        tab.className = "active";
+        renderFields(body, mall, addr, juso.zipNo || "", detail);
+      });
+      tabs.appendChild(tab);
+    });
+
+    panel.appendChild(tabs);
+    panel.appendChild(body);
+    renderFields(body, MALLS[0], addr, juso.zipNo || "", detail);
+  }
+
+  function renderFields(body, mall, addr, zip, detail) {
+    body.innerHTML = "";
+    mall.fields(addr, zip, detail).forEach(function (pair) {
+      const value = pair[1] || "";
+      if (!value && pair[0].indexOf("2") !== -1) return; // 상세주소 미입력 시 2번 줄 생략
+      body.appendChild(row(pair[0], value || "—", Boolean(value)));
     });
   }
 
