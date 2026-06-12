@@ -5,12 +5,14 @@
   --primary-dark: #020617;
   --accent: #0369a1;
   --accent-dark: #075985;
-  --text: #020617;
-  --text-light: #475569;
-  --bg: #f8fafc;
-  --card: #ffffff;
-  --border: #e2e8f0;
-  --muted: #e8ecf1;
+  --text: #1c1917;
+  --text-light: #57534e;
+  --bg: #fdf8ec;
+  --card: #fffdf5;
+  --border: #1c1917;
+  --border-soft: #e7dcc0;
+  --muted: #f5edd6;
+  --shadow-hard: 4px 4px 0 #1c1917;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,7 +31,7 @@ body {
   outline-offset: 2px;
 }
 
-button { transition: background 0.2s, color 0.2s, border-color 0.2s; }
+button { transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.05s, box-shadow 0.05s; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
@@ -38,7 +40,8 @@ button { transition: background 0.2s, color 0.2s, border-color 0.2s; }
 header {
   text-align: center;
   padding: 3.5rem 1rem 4.5rem;
-  background: linear-gradient(160deg, #0f172a 0%, #1e3a5f 100%);
+  background: #0f172a;
+  border-bottom: 3px solid #1c1917;
 }
 
 header h1 {
@@ -59,10 +62,10 @@ main {
   position: relative;
   margin-top: -2.8rem;
   background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
+  border: 2px solid var(--border);
+  border-radius: 2px;
   padding: 1.2rem;
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.14);
+  box-shadow: 6px 6px 0 #1c1917;
 }
 
 .search-box form {
@@ -75,13 +78,13 @@ main {
   min-width: 0;
   padding: 0.9rem 1rem;
   font-size: 1.05rem;
-  background: var(--bg);
+  background: #fff;
   border: 2px solid var(--border);
-  border-radius: 10px;
+  border-radius: 2px;
   outline: none;
 }
 
-#keyword:focus { border-color: var(--accent); }
+#keyword:focus { border-color: var(--accent); box-shadow: 2px 2px 0 var(--accent); }
 
 #search-btn {
   padding: 0.8rem 1.5rem;
@@ -90,12 +93,18 @@ main {
   font-weight: 700;
   color: #fff;
   background: var(--accent);
-  border: none;
-  border-radius: 10px;
+  border: 2px solid var(--border);
+  border-radius: 2px;
   cursor: pointer;
+  box-shadow: var(--shadow-hard);
 }
 
 #search-btn:hover { background: var(--accent-dark); }
+
+#search-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
 
 .hint {
   margin-top: 0.5rem;
@@ -107,7 +116,8 @@ main {
   margin: 1.5rem 0;
   padding: 1rem;
   background: #fef3c7;
-  border-radius: 10px;
+  border: 2px solid var(--border);
+  border-radius: 2px;
   text-align: center;
 }
 
@@ -115,11 +125,11 @@ main {
 
 .result-card {
   background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  border: 2px solid var(--border);
+  border-radius: 2px;
   padding: 1rem 1.2rem;
-  margin-bottom: 0.8rem;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-hard);
 }
 
 .result-row {
@@ -145,9 +155,9 @@ main {
 .copy-btn {
   font-size: 0.8rem;
   padding: 0.35rem 0.8rem;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 2px;
+  background: #fff;
   cursor: pointer;
 }
 
@@ -159,11 +169,12 @@ main {
   padding: 0.6rem 1rem;
   font-size: 0.95rem;
   border: 2px solid var(--border);
-  border-radius: 10px;
+  border-radius: 2px;
   outline: none;
+  background: #fff;
 }
 
-.detail-input:focus { border-color: var(--accent); }
+.detail-input:focus { border-color: var(--accent); box-shadow: 2px 2px 0 var(--accent); }
 
 .mall-section { margin-top: 0.7rem; }
 
@@ -175,8 +186,8 @@ main {
   font-weight: 700;
   color: var(--accent);
   background: #f0f9ff;
-  border: 1px solid #bae6fd;
-  border-radius: 8px;
+  border: 2px solid var(--border);
+  border-radius: 2px;
   cursor: pointer;
 }
 
@@ -192,9 +203,9 @@ main {
 .mall-tabs button {
   padding: 0.3rem 0.8rem;
   font-size: 0.8rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 2px;
+  background: #fff;
   cursor: pointer;
 }
 
@@ -206,7 +217,8 @@ main {
 
 .mall-fields {
   background: var(--muted);
-  border-radius: 8px;
+  border: 1.5px solid var(--border-soft);
+  border-radius: 2px;
   padding: 0.5rem 0.8rem;
 }
 
@@ -220,8 +232,8 @@ main {
   font-weight: 700;
   color: #047857;
   background: #ecfdf5;
-  border: 1px solid #a7f3d0;
-  border-radius: 8px;
+  border: 2px solid var(--border);
+  border-radius: 2px;
   cursor: pointer;
 }
 
@@ -230,8 +242,8 @@ main {
 .map-holder iframe {
   width: 100%;
   height: 300px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  border: 2px solid var(--border);
+  border-radius: 2px;
 }
 
 .pagination {
@@ -244,9 +256,9 @@ main {
 
 .pagination button {
   padding: 0.4rem 1rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 2px;
+  background: #fff;
   cursor: pointer;
 }
 
@@ -257,7 +269,7 @@ main {
 .seo-content {
   margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 1px solid var(--border);
+  border-top: 2px solid var(--border-soft);
 }
 
 .seo-content h2 {
@@ -275,10 +287,10 @@ main {
 
 .benefit-card {
   background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
+  border: 2px solid var(--border);
+  border-radius: 2px;
   padding: 1.2rem;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+  box-shadow: var(--shadow-hard);
 }
 
 .benefit-card svg {
@@ -286,7 +298,8 @@ main {
   height: 28px;
   color: var(--accent);
   background: #f0f9ff;
-  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  border-radius: 2px;
   padding: 5px;
   box-sizing: content-box;
 }
