@@ -303,15 +303,92 @@
       const card = document.createElement("article");
       card.className = "result-card";
 
-      card.appendChild(row("영문 도로명", juso.roadAddr, true));
-      if (juso.jibunAddr) card.appendChild(row("영문 지번", juso.jibunAddr, true));
-      if (juso.korAddr) card.appendChild(row("한글 주소", juso.korAddr, false));
-      if (juso.zipNo) card.appendChild(row("우편번호", juso.zipNo, true));
+      const zip = juso.zipNo || "";
+      const fullEng = juso.roadAddr + (zip ? ", " + zip : "") + ", Republic of Korea";
+
+      if (juso.korAddr) card.appendChild(addrBlock("한글 주소", juso.korAddr));
+      card.appendChild(addrBlock("영문 주소", fullEng));
+      if (juso.jibunAddr) card.appendChild(addrBlock("영문 지번 주소", juso.jibunAddr));
+
+      // 항목별 영문 주소
+      const a = parseEng(juso.roadAddr);
+      const detail = convertDetail(document.getElementById("detail").value.trim());
+      const block = document.createElement("div");
+      block.className = "addr-block";
+      const title = document.createElement("h3");
+      title.className = "block-title";
+      title.textContent = "항목별 영문 주소";
+      block.appendChild(title);
+      [
+        ["Street Address 1 (Address Line 1)", a.line1],
+        ["Street Address 2 (Address Line 2)", detail],
+        ["City", a.city],
+        ["State / Province / Region", a.state],
+        ["Zip Code (Postal Code)", zip],
+        ["Country", "Republic of Korea"],
+      ].forEach(function (pair) {
+        block.appendChild(fieldRow(pair[0], pair[1]));
+      });
+      card.appendChild(block);
 
       card.appendChild(mallSection(juso));
       if (juso.korAddr) card.appendChild(mapSection(juso.korAddr));
       resultsEl.appendChild(card);
     });
+  }
+
+  const COPY_SVG = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+  const CHECK_SVG = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+
+  function copyIcon(value) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "icon-copy";
+    btn.setAttribute("aria-label", "복사");
+    btn.innerHTML = COPY_SVG;
+    btn.addEventListener("click", function () {
+      navigator.clipboard.writeText(value).then(function () {
+        btn.innerHTML = CHECK_SVG;
+        btn.classList.add("copied");
+        setTimeout(function () {
+          btn.innerHTML = COPY_SVG;
+          btn.classList.remove("copied");
+        }, 1500);
+      });
+    });
+    return btn;
+  }
+
+  function addrBlock(title, value) {
+    const block = document.createElement("div");
+    block.className = "addr-block";
+    const h3 = document.createElement("h3");
+    h3.className = "block-title";
+    h3.textContent = title;
+    block.appendChild(h3);
+    const line = document.createElement("p");
+    line.className = "addr-value";
+    const span = document.createElement("span");
+    span.textContent = value;
+    line.appendChild(span);
+    line.appendChild(copyIcon(value));
+    block.appendChild(line);
+    return block;
+  }
+
+  function fieldRow(label, value) {
+    const div = document.createElement("div");
+    div.className = "field-row";
+    const labelEl = document.createElement("span");
+    labelEl.className = "field-label";
+    labelEl.textContent = label;
+    const right = document.createElement("span");
+    right.className = "field-value";
+    right.textContent = value || "";
+    div.appendChild(labelEl);
+    div.appendChild(right);
+    if (value) div.appendChild(copyIcon(value));
+    return div;
   }
 
   // 구글 지도 임베드 — API 키 없이 동작하며 클릭 시에만 로드한다.
@@ -347,14 +424,14 @@
   }
 
   // ---- 쇼핑몰 입력 양식 매핑 ----
-  // 영문 도로명주소 "110 Sejong-daero, Jung-gu, Seoul" 형태를
-  // 마지막 항목 = State(시/도), 그 앞 = City(시/군/구), 나머지 = 거리 주소로 분해한다.
+  // 영문 도로명주소 "175 Sebyeong-ro, Deokjin-gu, Jeonju-si, Jeonbuk-do"를
+  // 첫 항목 = 거리 주소, 마지막 = State(시/도), 나머지 = City(시/군/구)로 분해한다.
   function parseEng(roadAddr) {
     const parts = roadAddr.split(",").map(function (s) { return s.trim(); }).filter(Boolean);
     if (parts.length >= 3) {
       return {
-        line1: parts.slice(0, parts.length - 2).join(", "),
-        city: parts[parts.length - 2],
+        line1: parts[0],
+        city: parts.slice(1, parts.length - 1).join(", "),
         state: parts[parts.length - 1],
       };
     }

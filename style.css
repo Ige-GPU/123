@@ -340,3 +340,69 @@ footer {
   color: var(--primary);
   word-break: break-all;
 }
+
+/* ---- 항목별 주소 블록 (kraddress 스타일) ---- */
+
+.addr-block + .addr-block,
+.addr-block + .mall-section { margin-top: 0.9rem; }
+
+.addr-block {
+  border-top: 1px solid var(--border);
+  padding-top: 0.8rem;
+  margin-top: 0.9rem;
+}
+
+.result-card .addr-block:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+
+.block-title {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-light);
+  margin-bottom: 0.4rem;
+}
+
+.addr-value {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  word-break: break-all;
+}
+
+.icon-copy {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card);
+  color: var(--text-light);
+  cursor: pointer;
+}
+
+.icon-copy:hover { border-color: var(--primary); color: var(--primary); }
+.icon-copy.copied { border-color: #059669; color: #059669; }
+
+.field-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.32rem 0;
+}
+
+.field-label {
+  color: #92875f;
+  font-size: 0.85rem;
+  flex: none;
+}
+
+.field-value {
+  flex: 1;
+  text-align: right;
+  font-weight: 500;
+  word-break: break-all;
+  min-height: 1.2em;
+}
