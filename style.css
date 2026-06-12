@@ -1,18 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700;900&display=swap');
 
 :root {
-  --primary: #0f172a;
-  --primary-dark: #020617;
-  --accent: #0369a1;
-  --accent-dark: #075985;
+  --primary: #450a0a;
+  --primary-dark: #2c0606;
+  --accent: #dc2626;
+  --accent-dark: #b91c1c;
+  --gold: #a16207;
   --text: #1c1917;
   --text-light: #57534e;
   --bg: #fefbf3;
   --card: #fffef9;
-  --border: #1c1917;
+  --border: #292524;
   --border-soft: #ede5d0;
   --muted: #f8f3e3;
-  --shadow-hard: 4px 4px 0 #1c1917;
+  --shadow-hard: 4px 4px 0 #292524;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,18 +40,20 @@ button { transition: background 0.15s, color 0.15s, border-color 0.15s, transfor
 
 header {
   text-align: center;
-  padding: 3.5rem 1rem 4.5rem;
-  background: #0f172a;
-  border-bottom: 3px solid #1c1917;
+  padding: 4rem 1rem 5rem;
+  background: #450a0a;
+  border-bottom: 3px solid #292524;
 }
 
 header h1 {
-  font-size: 2.1rem;
+  font-family: "Noto Serif KR", serif;
+  font-weight: 900;
+  font-size: 2.5rem;
   color: #fff;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
-.tagline { color: #94a3b8; margin-top: 0.5rem; font-size: 1.05rem; }
+.tagline { color: #f0c9ba; margin-top: 0.6rem; font-size: 1.05rem; }
 
 main {
   max-width: 680px;
@@ -65,7 +68,7 @@ main {
   border: 2px solid var(--border);
   border-radius: 2px;
   padding: 1.2rem;
-  box-shadow: 6px 6px 0 #1c1917;
+  box-shadow: 6px 6px 0 #292524;
 }
 
 .search-box form {
@@ -220,7 +223,7 @@ main {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--accent);
-  background: #f0f9ff;
+  background: #fef2f2;
   border: 2px solid var(--border);
   border-radius: 2px;
   cursor: pointer;
@@ -284,7 +287,7 @@ main {
   box-shadow: var(--shadow-hard);
 }
 
-.tool-extra h2 { font-size: 1.15rem; color: var(--primary); }
+.tool-extra h2 { font-family: "Noto Serif KR", serif; font-weight: 700; font-size: 1.3rem; color: var(--primary); }
 .tool-extra .hint { margin: 0.3rem 0 0.8rem; }
 
 .extra-row {
@@ -322,8 +325,8 @@ main {
   min-height: 44px;
   font-size: 0.85rem;
   font-weight: 700;
-  color: #047857;
-  background: #ecfdf5;
+  color: var(--gold);
+  background: #fefce8;
   border: 2px solid var(--border);
   border-radius: 2px;
   cursor: pointer;
@@ -359,13 +362,15 @@ main {
 .ad-slot { margin: 1.5rem 0; min-height: 0; }
 
 .seo-content {
-  margin-top: 3rem;
-  padding-top: 2rem;
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
   border-top: 2px solid var(--border-soft);
 }
 
 .seo-content h2 {
-  font-size: 1.35rem;
+  font-family: "Noto Serif KR", serif;
+  font-weight: 700;
+  font-size: 1.5rem;
   margin: 2.2rem 0 0.8rem;
   color: var(--primary);
   letter-spacing: -0.01em;
@@ -389,7 +394,7 @@ main {
   width: 28px;
   height: 28px;
   color: var(--accent);
-  background: #f0f9ff;
+  background: #fef2f2;
   border: 1.5px solid var(--border);
   border-radius: 2px;
   padding: 5px;
@@ -406,12 +411,12 @@ footer {
   text-align: center;
   padding: 2.5rem 1rem;
   font-size: 0.85rem;
-  color: #94a3b8;
-  background: #0f172a;
+  color: #e7c8ba;
+  background: #450a0a;
   margin-top: 3rem;
 }
 
-footer a { color: #cbd5e1; }
+footer a { color: #f0d5c9; }
 
 @media (max-width: 480px) {
   .search-box form { flex-direction: column; }
