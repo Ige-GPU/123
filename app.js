@@ -12,6 +12,70 @@
 
   document.getElementById("year").textContent = new Date().getFullYear();
 
+  // ---- 최근 검색 (localStorage) ----
+  const RECENT_KEY = "recentSearches";
+  const RECENT_MAX = 5;
+
+  function getRecent() {
+    try {
+      return JSON.parse(localStorage.getItem(RECENT_KEY)) || [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveRecent(keyword) {
+    const list = getRecent().filter(function (k) { return k !== keyword; });
+    list.unshift(keyword);
+    try {
+      localStorage.setItem(RECENT_KEY, JSON.stringify(list.slice(0, RECENT_MAX)));
+    } catch (e) { /* 시크릿 모드 등 저장 불가 환경 무시 */ }
+    renderRecent();
+  }
+
+  function removeRecent(keyword) {
+    const list = getRecent().filter(function (k) { return k !== keyword; });
+    try {
+      localStorage.setItem(RECENT_KEY, JSON.stringify(list));
+    } catch (e) { /* ignore */ }
+    renderRecent();
+  }
+
+  function renderRecent() {
+    const box = document.getElementById("recent");
+    const chips = document.getElementById("recent-chips");
+    const list = getRecent();
+    box.hidden = list.length === 0;
+    chips.innerHTML = "";
+    list.forEach(function (keyword) {
+      const chip = document.createElement("span");
+      chip.className = "recent-chip";
+
+      const go = document.createElement("button");
+      go.type = "button";
+      go.textContent = keyword;
+      go.addEventListener("click", function () {
+        input.value = keyword;
+        currentKeyword = keyword;
+        currentPage = 1;
+        search();
+      });
+
+      const del = document.createElement("button");
+      del.type = "button";
+      del.className = "recent-del";
+      del.setAttribute("aria-label", keyword + " 기록 삭제");
+      del.textContent = "×";
+      del.addEventListener("click", function () { removeRecent(keyword); });
+
+      chip.appendChild(go);
+      chip.appendChild(del);
+      chips.appendChild(chip);
+    });
+  }
+
+  renderRecent();
+
   let currentKeyword = "";
   let currentPage = 1;
   let totalCount = 0;
@@ -110,6 +174,8 @@
       showStatus("검색 결과가 없습니다. 동/건물명 또는 도로명+번호로 다시 검색해 보세요.");
       return;
     }
+
+    saveRecent(currentKeyword);
 
     hideStatus();
     renderResults(list);

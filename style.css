@@ -176,6 +176,41 @@ main {
 
 .detail-input:focus { border-color: var(--accent); box-shadow: 2px 2px 0 var(--accent); }
 
+.recent {
+  margin-top: 0.7rem;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.recent-label { color: var(--text-light); font-weight: 500; }
+
+.recent-chip {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1.5px solid var(--border);
+  border-radius: 2px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.recent-chip button {
+  border: none;
+  background: none;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+}
+
+.recent-chip button:hover { background: var(--muted); }
+
+.recent-del {
+  border-left: 1.5px solid var(--border-soft) !important;
+  color: var(--text-light);
+}
+
 .mall-section { margin-top: 0.7rem; }
 
 .mall-toggle {
