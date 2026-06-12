@@ -128,8 +128,41 @@
       if (juso.zipNo) card.appendChild(row("우편번호", juso.zipNo, true));
 
       card.appendChild(mallSection(juso));
+      if (juso.korAddr) card.appendChild(mapSection(juso.korAddr));
       resultsEl.appendChild(card);
     });
+  }
+
+  // 구글 지도 임베드 — API 키 없이 동작하며 클릭 시에만 로드한다.
+  function mapSection(korAddr) {
+    const wrap = document.createElement("div");
+    wrap.className = "map-section";
+
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "map-toggle";
+    toggle.textContent = "지도에서 위치 확인 ▾";
+    wrap.appendChild(toggle);
+
+    const holder = document.createElement("div");
+    holder.className = "map-holder";
+    holder.hidden = true;
+    wrap.appendChild(holder);
+
+    toggle.addEventListener("click", function () {
+      holder.hidden = !holder.hidden;
+      toggle.textContent = holder.hidden ? "지도에서 위치 확인 ▾" : "지도 닫기 ▴";
+      if (!holder.hidden && !holder.firstChild) {
+        const iframe = document.createElement("iframe");
+        iframe.src = "https://www.google.com/maps?q=" + encodeURIComponent(korAddr) + "&output=embed&hl=ko";
+        iframe.loading = "lazy";
+        iframe.referrerPolicy = "no-referrer-when-downgrade";
+        iframe.title = korAddr + " 지도";
+        holder.appendChild(iframe);
+      }
+    });
+
+    return wrap;
   }
 
   // ---- 쇼핑몰 입력 양식 매핑 ----
