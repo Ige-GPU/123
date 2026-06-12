@@ -257,6 +257,63 @@ main {
   padding: 0.5rem 0.8rem;
 }
 
+.copy-all-btn {
+  display: block;
+  width: 100%;
+  margin-top: 0.6rem;
+  padding: 0.55rem;
+  min-height: 44px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--primary);
+  border: 2px solid var(--border);
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 rgba(28, 25, 23, 0.35);
+}
+
+.copy-all-btn:active { transform: translate(3px, 3px); box-shadow: none; }
+
+.tool-extra {
+  margin-top: 2.5rem;
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 2px;
+  padding: 1.2rem;
+  box-shadow: var(--shadow-hard);
+}
+
+.tool-extra h2 { font-size: 1.15rem; color: var(--primary); }
+.tool-extra .hint { margin: 0.3rem 0 0.8rem; }
+
+.extra-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.6rem;
+}
+
+.extra-row input {
+  flex: 1;
+  min-width: 180px;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.95rem;
+  border: 2px solid var(--border);
+  border-radius: 2px;
+  outline: none;
+  background: #fff;
+}
+
+.extra-row input:focus { border-color: var(--accent); box-shadow: 2px 2px 0 var(--accent); }
+
+.extra-row output {
+  font-weight: 700;
+  color: var(--accent);
+  word-break: break-all;
+}
+
 .map-section { margin-top: 0.5rem; }
 
 .map-toggle {

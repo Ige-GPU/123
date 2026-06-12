@@ -76,6 +76,121 @@
 
   renderRecent();
 
+  // ---- 상세주소 한글 → 영문 자동 변환 ----
+  // "101동 1001호" → "Apt 101-1001", "3층 302호" → "#302, 3F", "지하 1층" → "B1"
+  function convertDetail(raw) {
+    const s = (raw || "").trim();
+    if (!s || !/[가-힣]/.test(s)) return s;
+
+    const dong = s.match(/(\d+)\s*동/);
+    const ho = s.match(/(\d+)\s*호/);
+    const basement = s.match(/지하\s*(\d+)?\s*층?/);
+    const floor = basement ? null : s.match(/(\d+)\s*층/);
+
+    const parts = [];
+    if (dong && ho) {
+      parts.push("Apt " + dong[1] + "-" + ho[1]);
+    } else if (ho) {
+      parts.push("#" + ho[1]);
+    }
+    if (floor && !(dong && ho)) parts.push(floor[1] + "F");
+    if (basement) parts.push("B" + (basement[1] || "1"));
+
+    if (parts.length === 0) return s; // 변환 규칙에 안 걸리면 원문 유지
+    return parts.join(", ");
+  }
+
+  const detailInput = document.getElementById("detail");
+  const detailPreview = document.getElementById("detail-preview");
+  const detailPreviewText = document.getElementById("detail-preview-text");
+
+  detailInput.addEventListener("input", function () {
+    const raw = detailInput.value.trim();
+    const converted = convertDetail(raw);
+    const show = raw !== "" && converted !== raw;
+    detailPreview.hidden = !show;
+    if (show) detailPreviewText.textContent = converted;
+  });
+
+  // ---- 한글 이름 로마자 변환 (국어의 로마자 표기법 + 통용 성씨 표기) ----
+  const CHO = ["g","kk","n","d","tt","r","m","b","pp","s","ss","","j","jj","ch","k","t","p","h"];
+  const JUNG = ["a","ae","ya","yae","eo","e","yeo","ye","o","wa","wae","oe","yo","u","wo","we","wi","yu","eu","ui","i"];
+  const JONG = ["","k","k","k","n","n","n","t","l","k","m","l","l","l","p","l","m","p","p","t","t","ng","t","t","k","t","p","t"];
+
+  const SURNAMES = {
+    "김":"KIM","이":"LEE","박":"PARK","최":"CHOI","정":"JUNG","강":"KANG","조":"CHO","윤":"YOON",
+    "장":"JANG","임":"LIM","한":"HAN","오":"OH","서":"SEO","신":"SHIN","권":"KWON","황":"HWANG",
+    "안":"AHN","송":"SONG","전":"JEON","홍":"HONG","유":"YOO","고":"KO","문":"MOON","양":"YANG",
+    "손":"SON","배":"BAE","백":"BAEK","허":"HUH","남":"NAM","심":"SHIM","노":"NOH","하":"HA",
+    "곽":"KWAK","성":"SUNG","차":"CHA","주":"JOO","우":"WOO","구":"KOO","민":"MIN","류":"RYU",
+    "나":"NA","진":"JIN","지":"JI","엄":"UM","채":"CHAE","원":"WON","천":"CHUN","방":"BANG",
+    "공":"KONG","현":"HYUN","함":"HAM","변":"BYUN","염":"YEOM","여":"YEO","추":"CHOO","도":"DO",
+    "소":"SO","석":"SUK","선":"SUN","설":"SEOL","마":"MA","길":"GIL","연":"YEON","위":"WI",
+    "표":"PYO","명":"MYUNG","기":"KI","금":"KEUM","왕":"WANG","반":"BAN","옥":"OK","육":"YOOK",
+    "인":"IN","맹":"MAENG","제":"JE","모":"MO","탁":"TAK","국":"KOOK","은":"EUN","편":"PYUN","용":"YONG",
+    "남궁":"NAMGOONG","황보":"HWANGBO","제갈":"JEGAL","선우":"SUNWOO","독고":"DOKGO","사공":"SAGONG","서문":"SEOMOON"
+  };
+
+  function romanizeSyllable(ch) {
+    const code = ch.charCodeAt(0) - 0xac00;
+    if (code < 0 || code > 11171) return ch;
+    return CHO[Math.floor(code / 588)] + JUNG[Math.floor((code % 588) / 28)] + JONG[code % 28];
+  }
+
+  function romanize(str) {
+    return Array.prototype.map.call(str, romanizeSyllable).join("");
+  }
+
+  function convertName(raw) {
+    const s = raw.replace(/\s+/g, "").trim();
+    if (!s || !/^[가-힣]+$/.test(s)) return "";
+    let surname, given;
+    if (s.length >= 3 && SURNAMES[s.slice(0, 2)]) {
+      surname = SURNAMES[s.slice(0, 2)];
+      given = s.slice(2);
+    } else {
+      surname = SURNAMES[s[0]] || romanize(s[0]).toUpperCase();
+      given = s.slice(1);
+    }
+    if (!given) return surname;
+    return surname + " " + romanize(given).toUpperCase();
+  }
+
+  // ---- 전화번호 → +82 국제 형식 ----
+  function convertPhone(raw) {
+    const digits = (raw || "").replace(/\D/g, "");
+    if (digits.length < 9 || digits.length > 11 || digits[0] !== "0") return "";
+    let head, rest;
+    if (digits.startsWith("02")) {
+      head = "2";
+      rest = digits.slice(2);
+    } else {
+      head = digits.slice(1, 3);
+      rest = digits.slice(3);
+    }
+    return "+82-" + head + "-" + rest.slice(0, -4) + "-" + rest.slice(-4);
+  }
+
+  function bindConverter(inputId, outId, copyId, convert) {
+    const inp = document.getElementById(inputId);
+    const out = document.getElementById(outId);
+    const copy = document.getElementById(copyId);
+    inp.addEventListener("input", function () {
+      const result = convert(inp.value);
+      out.textContent = result;
+      copy.hidden = !result;
+    });
+    copy.addEventListener("click", function () {
+      navigator.clipboard.writeText(out.textContent).then(function () {
+        copy.textContent = "복사됨!";
+        setTimeout(function () { copy.textContent = "복사"; }, 1500);
+      });
+    });
+  }
+
+  bindConverter("kname", "kname-out", "kname-copy", convertName);
+  bindConverter("kphone", "kphone-out", "kphone-copy", convertPhone);
+
   let currentKeyword = "";
   let currentPage = 1;
   let totalCount = 0;
@@ -331,7 +446,7 @@
   function renderMallPanel(panel, juso) {
     panel.innerHTML = "";
     const addr = parseEng(juso.roadAddr);
-    const detail = document.getElementById("detail").value.trim();
+    const detail = convertDetail(document.getElementById("detail").value.trim());
 
     const tabs = document.createElement("div");
     tabs.className = "mall-tabs";
@@ -358,11 +473,25 @@
 
   function renderFields(body, mall, addr, zip, detail) {
     body.innerHTML = "";
+    const lines = [];
     mall.fields(addr, zip, detail).forEach(function (pair) {
       const value = pair[1] || "";
       if (!value && pair[0].indexOf("2") !== -1) return; // 상세주소 미입력 시 2번 줄 생략
       body.appendChild(row(pair[0], value || "—", Boolean(value)));
+      if (value) lines.push(pair[0] + ": " + value);
     });
+
+    const copyAll = document.createElement("button");
+    copyAll.type = "button";
+    copyAll.className = "copy-all-btn";
+    copyAll.textContent = mall.name + " 양식 전체 복사";
+    copyAll.addEventListener("click", function () {
+      navigator.clipboard.writeText(lines.join("\n")).then(function () {
+        copyAll.textContent = "복사됨!";
+        setTimeout(function () { copyAll.textContent = mall.name + " 양식 전체 복사"; }, 1500);
+      });
+    });
+    body.appendChild(copyAll);
   }
 
   function row(label, value, copyable) {
