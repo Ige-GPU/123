@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700;900&display=swap');
 
 :root {
-  --primary: #9a3412;
-  --primary-dark: #7c2d12;
-  --accent: #ea580c;
-  --accent-dark: #c2410c;
-  --gold: #d97706;
+  --primary: #0f172a;
+  --primary-dark: #020617;
+  --accent: #0369a1;
+  --accent-dark: #075985;
+  --gold: #047857;
   --text: #1c1917;
   --text-light: #57534e;
   --bg: #fefbf3;
@@ -41,7 +41,7 @@ button { transition: background 0.15s, color 0.15s, border-color 0.15s, transfor
 header {
   text-align: center;
   padding: 4rem 1rem 5rem;
-  background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%);
+  background: linear-gradient(160deg, #0f172a 0%, #1e3a5f 100%);
   border-bottom: 3px solid #292524;
 }
 
@@ -53,7 +53,7 @@ header h1 {
   letter-spacing: -0.01em;
 }
 
-.tagline { color: rgba(255, 255, 255, 0.92); margin-top: 0.6rem; font-size: 1.05rem; }
+.tagline { color: #b7c5d6; margin-top: 0.6rem; font-size: 1.05rem; }
 
 main {
   max-width: 680px;
@@ -223,7 +223,7 @@ main {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--accent);
-  background: #fff7ed;
+  background: #f0f9ff;
   border: 2px solid var(--border);
   border-radius: 2px;
   cursor: pointer;
@@ -326,7 +326,7 @@ main {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--gold);
-  background: #fffbeb;
+  background: #ecfdf5;
   border: 2px solid var(--border);
   border-radius: 2px;
   cursor: pointer;
@@ -394,7 +394,7 @@ main {
   width: 28px;
   height: 28px;
   color: var(--accent);
-  background: #fff7ed;
+  background: #f0f9ff;
   border: 1.5px solid var(--border);
   border-radius: 2px;
   padding: 5px;
@@ -411,12 +411,12 @@ footer {
   text-align: center;
   padding: 2.5rem 1rem;
   font-size: 0.85rem;
-  color: #fed7aa;
-  background: #7c2d12;
+  color: #94a3b8;
+  background: #0f172a;
   margin-top: 3rem;
 }
 
-footer a { color: #ffedd5; }
+footer a { color: #cbd5e1; }
 
 @media (max-width: 480px) {
   .search-box form { flex-direction: column; }
