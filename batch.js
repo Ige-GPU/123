@@ -14,6 +14,14 @@
 
   let results = [];
 
+  // 작성 형식: 한 줄 = "주소" 또는 "주소 | 상세주소".
+  // 엑셀에서 주소·상세주소 두 열을 붙여넣으면 탭 구분으로 자동 인식한다.
+  function parseLine(line) {
+    const sep = line.indexOf("\t") !== -1 ? "\t" : "|";
+    const parts = line.split(sep).map(function (s) { return s.trim(); });
+    return { addr: parts[0], detail: convertDetailKo(parts[1] || "") };
+  }
+
   btn.addEventListener("click", async function () {
     const lines = input.value.split("\n").map(function (s) { return s.trim(); }).filter(Boolean);
     if (lines.length === 0) {
@@ -32,11 +40,12 @@
 
     for (let i = 0; i < lines.length; i++) {
       showStatus("변환 중… " + (i + 1) + " / " + lines.length);
+      const item = parseLine(lines[i]);
       let row;
       try {
-        row = await convertOne(lines[i]);
+        row = await convertOne(item.addr, item.detail);
       } catch (e) {
-        row = { kor: lines[i], eng: "(오류: " + e.message + ")", zip: "", ok: false };
+        row = { kor: item.addr, detail: item.detail, eng: "(오류: " + e.message + ")", zip: "", ok: false };
       }
       results.push(row);
       appendRow(i + 1, row);
@@ -48,7 +57,7 @@
     btn.disabled = false;
   });
 
-  function convertOne(keyword) {
+  function convertOne(keyword, detail) {
     return new Promise(function (resolve, reject) {
       const params = new URLSearchParams({
         confmKey: JUSO_CONFIG.apiKey,
@@ -63,10 +72,12 @@
         if (common.errorCode === "E0001") return reject(new Error("API 키 오류"));
         if (common.errorCode !== "0") return reject(new Error(common.errorMessage || "검색 오류"));
         const juso = (data.results.juso || [])[0];
-        if (!juso) return resolve({ kor: keyword, eng: "(결과 없음)", zip: "", ok: false });
+        if (!juso) return resolve({ kor: keyword, detail: detail, eng: "(결과 없음)", zip: "", ok: false });
         resolve({
           kor: keyword,
-          eng: juso.roadAddr + (juso.zipNo ? ", " + juso.zipNo : "") + ", Republic of Korea",
+          detail: detail,
+          eng: (detail ? detail + ", " : "") + juso.roadAddr +
+               (juso.zipNo ? ", " + juso.zipNo : "") + ", Republic of Korea",
           zip: juso.zipNo || "",
           ok: true,
         });
@@ -97,7 +108,7 @@
   function appendRow(num, row) {
     const tr = document.createElement("tr");
     if (!row.ok) tr.className = "row-fail";
-    [num, row.kor, row.eng, row.zip].forEach(function (v) {
+    [num, row.kor, row.detail || "", row.eng, row.zip].forEach(function (v) {
       const td = document.createElement("td");
       td.textContent = v;
       tr.appendChild(td);
@@ -106,8 +117,8 @@
   }
 
   copyBtn.addEventListener("click", function () {
-    const tsv = ["한글주소\t영문주소\t우편번호"].concat(
-      results.map(function (r) { return r.kor + "\t" + r.eng + "\t" + r.zip; })
+    const tsv = ["한글주소\t상세주소\t영문주소\t우편번호"].concat(
+      results.map(function (r) { return r.kor + "\t" + (r.detail || "") + "\t" + r.eng + "\t" + r.zip; })
     ).join("\n");
     navigator.clipboard.writeText(tsv).then(function () {
       copyBtn.textContent = "복사됨!";
@@ -117,8 +128,8 @@
 
   csvBtn.addEventListener("click", function () {
     const esc = function (s) { return '"' + String(s).replace(/"/g, '""') + '"'; };
-    const csv = "﻿한글주소,영문주소,우편번호\n" + results.map(function (r) {
-      return [r.kor, r.eng, r.zip].map(esc).join(",");
+    const csv = "﻿한글주소,상세주소,영문주소,우편번호\n" + results.map(function (r) {
+      return [r.kor, r.detail || "", r.eng, r.zip].map(esc).join(",");
     }).join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
     const a = document.createElement("a");
