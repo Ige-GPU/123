@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>영문주소 대량 변환기 - 주소 여러 개 일괄 영문 변환</title>
+  <meta name="description" content="한글 주소 여러 개를 한 번에 영문주소로 일괄 변환합니다. 고객 배송지, 발송 명단, 직원 명부를 붙여넣고 변환 후 CSV(엑셀)로 다운로드하세요. 무료.">
+  <link rel="canonical" href="https://example.com/batch.html">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>영문주소 대량 변환기</h1>
+    <p class="tagline">주소 여러 개를 붙여넣으면 한 번에 영문으로 변환합니다</p>
+  </header>
+
+  <main>
+    <section class="search-box">
+      <textarea id="batch-input" rows="8"
+        placeholder="한 줄에 주소 하나씩 입력하세요 (최대 50건)&#10;&#10;서울특별시 중구 세종대로 110&#10;경기도 성남시 분당구 판교역로 166&#10;전주시 덕진구 세병로 175"></textarea>
+      <button type="button" id="batch-btn">일괄 변환</button>
+      <p class="hint">한 줄에 주소 하나. 도로명·지번·건물명 모두 가능합니다. 변환 후 CSV(엑셀)로 내려받을 수 있습니다.</p>
+    </section>
+
+    <section id="batch-status" class="status" hidden></section>
+
+    <section id="batch-result" hidden>
+      <div class="batch-actions">
+        <button type="button" id="batch-copy" class="copy-btn">전체 복사 (엑셀 붙여넣기용)</button>
+        <button type="button" id="batch-csv" class="copy-btn">CSV 다운로드</button>
+      </div>
+      <div class="batch-table-wrap">
+        <table class="batch-table">
+          <thead>
+            <tr><th>#</th><th>입력 주소</th><th>영문 주소</th><th>우편번호</th></tr>
+          </thead>
+          <tbody id="batch-rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="seo-content">
+      <h2>대량 변환은 언제 필요한가요?</h2>
+      <ul>
+        <li><strong>쇼핑몰·기업</strong> — 해외 발송용 고객 배송지 목록 일괄 변환</li>
+        <li><strong>청첩장·초대장</strong> — 해외 하객 명단 주소 변환</li>
+        <li><strong>인사·총무</strong> — 직원 명부, 거래처 목록의 영문 서류 작성</li>
+        <li><strong>이사·유학 대행</strong> — 반복적인 주소 변환 업무</li>
+      </ul>
+
+      <h2>사용 방법</h2>
+      <ol style="padding-left:1.3rem">
+        <li>엑셀이나 메모장에서 주소 목록을 복사해 위 입력창에 붙여넣기 (한 줄에 하나)</li>
+        <li><em>일괄 변환</em> 버튼 클릭 — 진행 상황이 실시간으로 표시됩니다</li>
+        <li>완료 후 <em>전체 복사</em>(엑셀에 바로 붙여넣기) 또는 <em>CSV 다운로드</em></li>
+      </ol>
+
+      <h2>자주 묻는 질문</h2>
+      <h3>한 번에 몇 건까지 변환되나요?</h3>
+      <p>한 번에 50건까지 변환됩니다. 더 많으면 나눠서 변환하세요.</p>
+      <h3>변환 결과는 정확한가요?</h3>
+      <p>행정안전부 공식 영문주소 데이터를 사용합니다. 단, 주소가 불완전하면 가장 유사한 결과 1건이 매칭되므로 중요한 발송 전에는 확인을 권합니다.</p>
+      <h3>동·호수 같은 상세주소도 변환되나요?</h3>
+      <p>대량 변환은 기본 주소만 처리합니다. 상세주소 포함 변환은 <a href="index.html">단건 변환기</a>를 이용하세요.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p><a href="index.html">영문주소 변환기</a> · <a href="guide-amazon.html">아마존 가이드</a> · <a href="guide-aliexpress.html">알리 가이드</a> · <a href="guide-pccc.html">통관부호 가이드</a></p>
+    <p>주소 데이터 제공: 행정안전부 도로명주소 안내시스템 (juso.go.kr)</p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="batch.js"></script>
+</body>
+</html>

@@ -406,3 +406,70 @@ footer {
   word-break: break-all;
   min-height: 1.2em;
 }
+
+/* ---- 대량 변환기 ---- */
+
+#batch-input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  resize: vertical;
+}
+
+#batch-input:focus { border-color: var(--primary); }
+
+#batch-btn {
+  display: block;
+  width: 100%;
+  margin-top: 0.6rem;
+  padding: 0.8rem;
+  min-height: 48px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--primary);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#batch-btn:hover { background: var(--primary-dark); }
+#batch-btn:disabled { opacity: 0.5; cursor: default; }
+
+.batch-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin: 1rem 0 0.6rem;
+}
+
+.batch-actions .copy-btn { padding: 0.5rem 1rem; font-size: 0.85rem; }
+
+.batch-table-wrap { overflow-x: auto; }
+
+.batch-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  font-size: 0.88rem;
+}
+
+.batch-table th, .batch-table td {
+  border: 1px solid var(--border);
+  padding: 0.45rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+  word-break: break-all;
+}
+
+.batch-table th {
+  background: var(--bg);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.batch-table .row-fail td { color: #b91c1c; background: #fef2f2; }
