@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>영문주소 변환기 위젯 임베드 - 블로그·사이트에 무료 설치</title>
+  <meta name="description" content="영문주소 변환기를 내 블로그나 웹사이트에 무료로 붙여넣으세요. iframe 코드 한 줄로 설치됩니다.">
+  <link rel="canonical" href="https://example.com/embed.html">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .code-box { background:#0f172a; color:#e2e8f0; padding:1rem; border-radius:10px;
+      font-family:monospace; font-size:0.85rem; overflow-x:auto; white-space:pre; }
+    .copy-code { margin-top:0.5rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>위젯 임베드</h1>
+    <p class="tagline">영문주소 변환기를 내 블로그·사이트에 무료로 붙여넣으세요</p>
+  </header>
+  <main>
+    <section class="seo-content" style="margin-top:1.5rem;padding-top:0;border-top:none">
+      <h2>미리보기</h2>
+      <iframe src="widget.html" style="width:100%;height:220px;border:1px solid var(--border);border-radius:10px"
+              title="영문주소 변환 위젯 미리보기"></iframe>
+
+      <h2>설치 방법</h2>
+      <p>아래 코드를 복사해 블로그 글이나 웹페이지의 HTML에 붙여넣으면 끝입니다. 티스토리·워드프레스·네이버 블로그(HTML 모드) 등에서 사용할 수 있습니다.</p>
+      <div class="code-box" id="snippet">&lt;iframe src="https://example.com/widget.html"
+        width="100%" height="220" frameborder="0"
+        title="영문주소 변환기"&gt;&lt;/iframe&gt;</div>
+      <button type="button" class="copy-btn copy-code" id="copy-snippet">코드 복사</button>
+
+      <h2>자주 묻는 질문</h2>
+      <h3>무료인가요?</h3>
+      <p>네, 완전 무료입니다. 출처 표시(powered by 링크)만 유지해 주세요.</p>
+      <h3>높이를 바꿀 수 있나요?</h3>
+      <p>iframe의 <em>height</em> 값을 조절하면 됩니다. 기본 220px을 권장합니다.</p>
+    </section>
+  </main>
+  <footer>
+    <p><a href="index.html">영문주소 변환기</a> · <a href="batch.html">대량 변환</a> · <a href="open-api.html">API 문서</a></p>
+  </footer>
+  <script>
+    document.getElementById("copy-snippet").addEventListener("click", function () {
+      var t = document.getElementById("snippet").textContent;
+      navigator.clipboard.writeText(t).then(function () {
+        var b = document.getElementById("copy-snippet");
+        b.textContent = "복사됨!";
+        setTimeout(function () { b.textContent = "코드 복사"; }, 1500);
+      });
+    });
+  </script>
+</body>
+</html>

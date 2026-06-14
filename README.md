@@ -57,3 +57,31 @@ python3 -m http.server 8000
 - 트래픽이 쌓이기까지 보통 수개월이 걸립니다. 도메인 신뢰도와 콘텐츠 양이 핵심입니다.
 - 한국어 사이트 AdSense RPM(1천 노출당 수익)은 대략 $1~5 수준으로, 월 10만 방문 규모가 되어야 의미 있는 수익이 납니다.
 - 동일 키워드에 jusoen.com, jusoga.com, juso24.com 등 기존 경쟁자가 있으므로, 차별화(예: 영문주소 + 통관부호 안내, 직구 가이드 결합)를 권장합니다.
+
+## 추가 페이지 / 자산 (A·B 작업)
+
+| 경로 | 역할 |
+|---|---|
+| `favicon.svg` / `og-image.png` | 파비콘·소셜 공유 이미지 (모든 페이지 메타에 연결됨) |
+| `404.html` | GitHub Pages 404 페이지 |
+| `widget.html` | 임베드용 미니 변환기 (iframe 삽입 대상) |
+| `embed.html` | 위젯 설치 안내 + 복사용 iframe 코드 |
+| `open-api.html` | 행정안전부 영문주소 API 사용법 (개발자 유입·백링크용) |
+| `roads/` | 도로명별 정적 SEO 페이지 (프로그래매틱 SEO) |
+| `scripts/build-roads.mjs` | 도로 페이지 생성기 |
+| `roads-data.json` | 도로 시드 데이터 |
+
+### 도로 페이지 생성/확장
+
+```bash
+node scripts/build-roads.mjs
+```
+
+`roads-data.json`에 `{ ko, eng, sido, sigungu, zip, landmark }` 형식으로 도로를 추가하면
+`roads/<slug>.html`과 허브(`roads/index.html`), `sitemap-roads.xml`이 다시 생성됩니다.
+juso.go.kr 무료 주소 DB를 같은 형식으로 변환해 넣으면 수만 페이지로 확장됩니다.
+
+### 배포 시 도메인 교체
+
+`example.com`을 실제 도메인으로 일괄 치환하세요(canonical, og:url, sitemap, build-roads.mjs의 `SITE`).
+Search Console 인증과 GA4는 각 HTML `<head>`의 주석 처리된 자리에 값만 채우면 됩니다.

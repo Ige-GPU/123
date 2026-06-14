@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://example.com/roads/index.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/sejong-daero.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/teheran-ro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/gangnam-daero.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/eulji-ro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/hangang-daero.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/yeoui-daero.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/olympic-ro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/yangjae-daero.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/pangyoyeok-ro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/jeongja-il-ro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/dongtan-daero.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/jungang-ro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/songdogwahak-ro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/haeundaehaebyeon-ro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/centumjungang-ro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/jungang-daero.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/dongdaegu-ro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/dalgubeol-daero.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/dunsan-ro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/daehak-ro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/sangmujungang-ro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/cheomdangwagi-ro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/hannuri-daero.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/sebyeong-ro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://example.com/roads/cheomdangwahak-ro.html</loc><priority>0.6</priority></url>
+</urlset>

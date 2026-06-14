@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>영문주소 변환 위젯</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    body { font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+      color: #1f2937; background: #fff; padding: 12px; }
+    .w-form { display: flex; gap: 6px; }
+    #wk { flex: 1; min-width: 0; padding: 10px; font-size: 15px; border: 2px solid #e5e7eb; border-radius: 8px; outline: none; }
+    #wk:focus { border-color: #2563eb; }
+    #wb { padding: 0 16px; font-weight: 700; color: #fff; background: #2563eb; border: none; border-radius: 8px; cursor: pointer; }
+    #wb:hover { background: #1d4ed8; }
+    .w-status { margin-top: 10px; font-size: 13px; color: #6b7280; }
+    .w-card { margin-top: 10px; border: 1px solid #e5e7eb; border-radius: 8px; padding: 10px 12px; }
+    .w-eng { font-size: 15px; word-break: break-all; }
+    .w-zip { font-size: 13px; color: #6b7280; margin-top: 4px; }
+    .w-credit { margin-top: 10px; font-size: 11px; color: #9ca3af; text-align: right; }
+    .w-credit a { color: #6b7280; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <form class="w-form" id="wf">
+    <input type="text" id="wk" placeholder="한글 주소 입력 (예: 세종대로 110)" autocomplete="off" required>
+    <button type="submit" id="wb">변환</button>
+  </form>
+  <div class="w-status" id="ws"></div>
+  <div id="wr"></div>
+  <div class="w-credit">powered by <a href="https://example.com/" target="_blank" rel="noopener">영문주소 변환기</a></div>
+
+  <script src="config.js"></script>
+  <script>
+  (function () {
+    var f = document.getElementById("wf"), k = document.getElementById("wk"),
+        s = document.getElementById("ws"), r = document.getElementById("wr");
+
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var kw = k.value.trim();
+      if (kw.length < 2) { s.textContent = "두 글자 이상 입력하세요."; return; }
+      s.textContent = "검색 중…"; r.innerHTML = "";
+      var params = new URLSearchParams({ confmKey: JUSO_CONFIG.apiKey, currentPage: "1",
+        countPerPage: "1", keyword: kw, resultType: "json" });
+      jsonp(JUSO_CONFIG.endpoint + "?" + params.toString(), function (data) {
+        var c = data && data.results && data.results.common;
+        if (!c || c.errorCode !== "0") { s.textContent = "변환 중 오류가 발생했습니다."; return; }
+        var j = (data.results.juso || [])[0];
+        if (!j) { s.textContent = "검색 결과가 없습니다."; return; }
+        s.textContent = "";
+        var eng = j.roadAddr + (j.zipNo ? ", " + j.zipNo : "") + ", Republic of Korea";
+        r.innerHTML = '<div class="w-card"><div class="w-eng"></div>' +
+          (j.zipNo ? '<div class="w-zip">우편번호 ' + j.zipNo + '</div>' : '') + '</div>';
+        r.querySelector(".w-eng").textContent = eng;
+      }, function () { s.textContent = "주소 서버에 연결하지 못했습니다."; });
+    });
+
+    function jsonp(url, ok, err) {
+      var cb = "wcb_" + Date.now(), sc = document.createElement("script");
+      var t = setTimeout(function () { cleanup(); err(); }, 10000);
+      window[cb] = function (d) { cleanup(); ok(d); };
+      function cleanup() { clearTimeout(t); delete window[cb]; sc.remove(); }
+      sc.src = url + "&callback=" + cb;
+      sc.onerror = function () { cleanup(); err(); };
+      document.body.appendChild(sc);
+    }
+  })();
+  </script>
+</body>
+</html>

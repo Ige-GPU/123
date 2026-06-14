@@ -174,6 +174,16 @@
   let currentPage = 1;
   let totalCount = 0;
 
+  // 도로 페이지 등에서 ?q=주소 로 들어오면 자동 검색
+  (function () {
+    const q = new URLSearchParams(location.search).get("q");
+    if (q && q.trim().length >= 2) {
+      input.value = q.trim();
+      currentKeyword = q.trim();
+      search();
+    }
+  })();
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     currentKeyword = input.value.trim();
