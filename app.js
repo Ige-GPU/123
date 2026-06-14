@@ -64,7 +64,7 @@
       const del = document.createElement("button");
       del.type = "button";
       del.className = "recent-del";
-      del.setAttribute("aria-label", keyword + " 기록 삭제");
+      del.setAttribute("aria-label", keyword + " " + T.recentDel);
       del.textContent = "×";
       del.addEventListener("click", function () { removeRecent(keyword); });
 
@@ -161,8 +161,8 @@
     });
     copy.addEventListener("click", function () {
       navigator.clipboard.writeText(out.textContent).then(function () {
-        copy.textContent = "복사됨!";
-        setTimeout(function () { copy.textContent = "복사"; }, 1500);
+        copy.textContent = T.copied;
+        setTimeout(function () { copy.textContent = T.copy; }, 1500);
       });
     });
   }
@@ -189,7 +189,7 @@
     currentKeyword = input.value.trim();
     currentPage = 1;
     if (currentKeyword.length < 2) {
-      showStatus("두 글자 이상 입력해 주세요.");
+      showStatus(T.statusMinLen);
       return;
     }
     search();
@@ -210,11 +210,11 @@
   });
 
   function search() {
-    showStatus("검색 중…");
+    showStatus(T.statusSearching);
     resultsEl.innerHTML = "";
     paginationEl.hidden = true;
     jsonp(buildUrl(currentKeyword, currentPage), handleResponse, function () {
-      showStatus("주소 서버에 연결하지 못했습니다. 잠시 후 다시 시도해 주세요.");
+      showStatus(T.statusNetErr);
     });
   }
 
@@ -260,14 +260,14 @@
   function handleResponse(data) {
     const common = data && data.results && data.results.common;
     if (!common) {
-      showStatus("응답을 해석할 수 없습니다.");
+      showStatus(T.statusParseErr);
       return;
     }
     if (common.errorCode !== "0") {
       if (common.errorCode === "E0001") {
-        showStatus("API 승인키가 유효하지 않습니다. config.js에 발급받은 키를 입력했는지 확인하세요.");
+        showStatus(T.statusKeyErr);
       } else {
-        showStatus(common.errorMessage || "검색 중 오류가 발생했습니다.");
+        showStatus(common.errorMessage || T.statusParseErr);
       }
       return;
     }
@@ -275,7 +275,7 @@
     totalCount = parseInt(common.totalCount, 10) || 0;
     const list = data.results.juso || [];
     if (totalCount === 0 || list.length === 0) {
-      showStatus("검색 결과가 없습니다. 동/건물명 또는 도로명+번호로 다시 검색해 보세요.");
+      showStatus(T.statusNoResult);
       return;
     }
 
@@ -295,9 +295,9 @@
       const zip = juso.zipNo || "";
       const fullEng = juso.roadAddr + (zip ? ", " + zip : "") + ", Republic of Korea";
 
-      if (juso.korAddr) card.appendChild(addrBlock("한글 주소", juso.korAddr));
-      card.appendChild(addrBlock("영문 주소", fullEng));
-      if (juso.jibunAddr) card.appendChild(addrBlock("영문 지번 주소", juso.jibunAddr));
+      if (juso.korAddr) card.appendChild(addrBlock(T.blockKor, juso.korAddr));
+      card.appendChild(addrBlock(T.blockEng, fullEng));
+      if (juso.jibunAddr) card.appendChild(addrBlock(T.blockEngJibun, juso.jibunAddr));
 
       // 항목별 영문 주소
       const a = parseEng(juso.roadAddr);
@@ -306,7 +306,7 @@
       block.className = "addr-block";
       const title = document.createElement("h3");
       title.className = "block-title";
-      title.textContent = "항목별 영문 주소";
+      title.textContent = T.blockByField;
       block.appendChild(title);
       [
         ["Street Address 1 (Address Line 1)", a.line1],
@@ -333,7 +333,7 @@
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "icon-copy";
-    btn.setAttribute("aria-label", "복사");
+    btn.setAttribute("aria-label", T.copy);
     btn.innerHTML = COPY_SVG;
     btn.addEventListener("click", function () {
       navigator.clipboard.writeText(value).then(function () {
@@ -388,7 +388,7 @@
     const toggle = document.createElement("button");
     toggle.type = "button";
     toggle.className = "map-toggle";
-    toggle.textContent = "지도에서 위치 확인 ▾";
+    toggle.textContent = T.mapOpen;
     wrap.appendChild(toggle);
 
     const holder = document.createElement("div");
@@ -398,7 +398,7 @@
 
     toggle.addEventListener("click", function () {
       holder.hidden = !holder.hidden;
-      toggle.textContent = holder.hidden ? "지도에서 위치 확인 ▾" : "지도 닫기 ▴";
+      toggle.textContent = holder.hidden ? T.mapOpen : T.mapClose;
       if (!holder.hidden && !holder.firstChild) {
         const iframe = document.createElement("iframe");
         iframe.src = "https://www.google.com/maps?q=" + encodeURIComponent(korAddr) + "&output=embed&hl=ko";
@@ -490,7 +490,7 @@
     const toggle = document.createElement("button");
     toggle.type = "button";
     toggle.className = "mall-toggle";
-    toggle.textContent = "쇼핑몰 입력 양식으로 보기 ▾";
+    toggle.textContent = T.mallOpen;
     wrap.appendChild(toggle);
 
     const panel = document.createElement("div");
@@ -501,8 +501,8 @@
     toggle.addEventListener("click", function () {
       panel.hidden = !panel.hidden;
       toggle.textContent = panel.hidden
-        ? "쇼핑몰 입력 양식으로 보기 ▾"
-        : "쇼핑몰 입력 양식 닫기 ▴";
+        ? T.mallOpen
+        : T.mallClose;
       if (!panel.hidden) renderMallPanel(panel, juso);
     });
 
@@ -553,7 +553,7 @@
     copyAll.textContent = mall.name + " 양식 전체 복사";
     copyAll.addEventListener("click", function () {
       navigator.clipboard.writeText(lines.join("\n")).then(function () {
-        copyAll.textContent = "복사됨!";
+        copyAll.textContent = T.copied;
         setTimeout(function () { copyAll.textContent = mall.name + " 양식 전체 복사"; }, 1500);
       });
     });
@@ -579,11 +579,11 @@
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "copy-btn";
-      btn.textContent = "복사";
+      btn.textContent = T.copy;
       btn.addEventListener("click", function () {
         navigator.clipboard.writeText(value).then(function () {
-          btn.textContent = "복사됨!";
-          setTimeout(function () { btn.textContent = "복사"; }, 1500);
+          btn.textContent = T.copied;
+          setTimeout(function () { btn.textContent = T.copy; }, 1500);
         });
       });
       div.appendChild(btn);
@@ -598,7 +598,7 @@
       return;
     }
     paginationEl.hidden = false;
-    pageInfo.textContent = currentPage + " / " + totalPages + " (" + totalCount.toLocaleString() + "건)";
+    pageInfo.textContent = T.pageInfo(currentPage, totalPages, totalCount);
     prevBtn.disabled = currentPage <= 1;
     nextBtn.disabled = currentPage >= totalPages;
   }
