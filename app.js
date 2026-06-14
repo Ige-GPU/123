@@ -432,7 +432,7 @@
 
   const MALLS = [
     {
-      name: "아마존",
+      key: "amazon",
       fields: function (a, zip, detail) {
         return [
           ["Address Line 1", a.line1],
@@ -445,7 +445,7 @@
       },
     },
     {
-      name: "알리익스프레스",
+      key: "ali",
       fields: function (a, zip, detail) {
         return [
           ["Province", a.state],
@@ -457,7 +457,7 @@
       },
     },
     {
-      name: "이베이",
+      key: "ebay",
       fields: function (a, zip, detail) {
         return [
           ["Street address", a.line1],
@@ -470,18 +470,20 @@
       },
     },
     {
-      name: "아이허브",
+      key: "iherb",
       fields: function (a, zip, detail) {
         return [
-          ["주소 1", a.line1],
-          ["주소 2", detail],
-          ["도시", a.city],
-          ["지역", a.state],
-          ["우편번호", zip],
+          ["Address 1", a.line1],
+          ["Address 2", detail],
+          ["City", a.city],
+          ["State / Region", a.state],
+          ["ZIP Code", zip],
         ];
       },
     },
   ];
+
+  const mallName = (m) => (T.mallNames && T.mallNames[m.key]) || m.key;
 
   function mallSection(juso) {
     const wrap = document.createElement("div");
@@ -522,7 +524,7 @@
     MALLS.forEach(function (mall, i) {
       const tab = document.createElement("button");
       tab.type = "button";
-      tab.textContent = mall.name;
+      tab.textContent = mallName(mall);
       tab.className = i === 0 ? "active" : "";
       tab.addEventListener("click", function () {
         tabs.querySelectorAll("button").forEach(function (b) { b.className = ""; });
@@ -550,11 +552,11 @@
     const copyAll = document.createElement("button");
     copyAll.type = "button";
     copyAll.className = "copy-all-btn";
-    copyAll.textContent = mall.name + " 양식 전체 복사";
+    copyAll.textContent = T.copyAll(mallName(mall));
     copyAll.addEventListener("click", function () {
       navigator.clipboard.writeText(lines.join("\n")).then(function () {
         copyAll.textContent = T.copied;
-        setTimeout(function () { copyAll.textContent = mall.name + " 양식 전체 복사"; }, 1500);
+        setTimeout(function () { copyAll.textContent = T.copyAll(mallName(mall)); }, 1500);
       });
     });
     body.appendChild(copyAll);

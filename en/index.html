@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Korean Address to English Converter (Road / Lot) — Free</title>
+  <meta name="description" content="Convert a Korean address into a standard English address for free. Get road-name, lot-number and ZIP code in English for Amazon, AliExpress, EMS shipping and visa forms.">
+  <meta name="keywords" content="korean address to english, convert korean address, english address korea, korea address translator, 한국 주소 영어">
+  <link rel="canonical" href="https://example.com/en/">
+  <link rel="alternate" hreflang="ko" href="https://example.com/">
+  <link rel="alternate" hreflang="en" href="https://example.com/en/">
+  <link rel="alternate" hreflang="ja" href="https://example.com/ja/">
+  <link rel="alternate" hreflang="x-default" href="https://example.com/">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Korean Address to English Converter — Free">
+  <meta property="og:description" content="Convert a Korean address into a standard English address for Amazon, AliExpress, EMS and visa forms.">
+  <meta property="og:image" content="https://example.com/og-image.png">
+  <link rel="stylesheet" href="../style.css">
+  <style>.lang-switch{margin-top:.6rem;font-size:.85rem}.lang-switch a{color:#cbd5e1;text-decoration:none;margin:0 .3rem}.lang-switch b{color:#fff;margin:0 .3rem}</style>
+</head>
+<body>
+  <header>
+    <h1>Korean Address → English Converter</h1>
+    <p class="tagline">Type a Korean address and get a standard English address instantly.</p>
+    <p class="lang-switch"><a href="../">한국어</a> · <b>English</b> · <a href="../ja/">日本語</a></p>
+  </header>
+
+  <main>
+    <section class="search-box">
+      <form id="search-form" role="search">
+        <input type="text" id="keyword" name="keyword"
+               placeholder="e.g. Sejong-daero 110, Dogok-dong 467-1"
+               autocomplete="off" autofocus required minlength="2">
+        <button type="submit" id="search-btn">Convert</button>
+      </form>
+      <input type="text" id="detail" class="detail-input"
+             placeholder="Detail (optional) — e.g. 101동 1001호 / Apt 101-1001" autocomplete="off">
+      <p id="detail-preview" class="hint" hidden>Romanized: <strong id="detail-preview-text"></strong></p>
+      <p class="hint">Search by road name, lot number or building name. Results map directly to <strong>Amazon / AliExpress</strong> address fields.</p>
+      <div id="recent" class="recent" hidden>
+        <span class="recent-label">Recent</span>
+        <span id="recent-chips"></span>
+      </div>
+    </section>
+
+    <aside class="ad-slot" id="ad-top" aria-hidden="true"></aside>
+
+    <section id="status" class="status" hidden></section>
+    <section id="results" class="results" aria-live="polite"></section>
+    <nav id="pagination" class="pagination" hidden>
+      <button id="prev-page" type="button">Prev</button>
+      <span id="page-info"></span>
+      <button id="next-page" type="button">Next</button>
+    </nav>
+
+    <section class="tool-extra">
+      <h2>Romanize Korean Name & Phone</h2>
+      <p class="hint">Overseas shipping addresses need an English name and the +82 international phone format.</p>
+      <div class="extra-row">
+        <input type="text" id="kname" placeholder="Korean name, e.g. 홍길동" autocomplete="off">
+        <output id="kname-out" for="kname"></output>
+        <button type="button" class="copy-btn" id="kname-copy" hidden>Copy</button>
+      </div>
+      <div class="extra-row">
+        <input type="tel" id="kphone" placeholder="Phone, e.g. 010-1234-5678" autocomplete="off">
+        <output id="kphone-out" for="kphone"></output>
+        <button type="button" class="copy-btn" id="kphone-copy" hidden>Copy</button>
+      </div>
+      <p class="hint">If you have a passport, use the English name exactly as printed there.</p>
+    </section>
+
+    <aside class="ad-slot" id="ad-bottom" aria-hidden="true"></aside>
+
+    <section class="seo-content">
+      <h2>When do you need an English address?</h2>
+      <ul>
+        <li><strong>Overseas shopping</strong> — shipping address for Amazon, eBay, AliExpress</li>
+        <li><strong>International shipping / EMS</strong> — receiving parcels in Korea</li>
+        <li><strong>Visa & study forms</strong> — proof of residence in English</li>
+        <li><strong>Card billing</strong> — billing address for foreign card payments</li>
+      </ul>
+
+      <h2>How to write a Korean address in English</h2>
+      <p>Korean addresses go from largest to smallest unit, but English addresses are written smallest first.
+      For example, <em>서울특별시 중구 세종대로 110</em> becomes
+      <em>110 Sejong-daero, Jung-gu, Seoul</em>. Unit/apartment details go at the very front,
+      e.g. <em>Apt 101-1001, 110 Sejong-daero, …</em></p>
+
+      <h2>FAQ</h2>
+      <h3>Are the results official?</h3>
+      <p>Yes. Data comes from the official road-name address system of Korea (juso.go.kr), so the English spelling is the government-standard romanization.</p>
+      <h3>Can I get the ZIP code?</h3>
+      <p>Yes, the 5-digit postal code is shown with each result.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p><a href="../">한국어</a> · <a href="../ja/">日本語</a></p>
+    <p>Address data: Korea road-name address system (juso.go.kr)</p>
+    <p>&copy; <span id="year"></span> Korean Address Converter</p>
+  </footer>
+
+  <script src="../config.js"></script>
+  <script src="../i18n.js"></script>
+  <script src="../convert.js"></script>
+  <script src="../app.js"></script>
+</body>
+</html>

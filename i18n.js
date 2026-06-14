@@ -23,6 +23,7 @@ window.I18N = {
     mapClose: "지도 닫기 ▴",
     copyAll: (name) => name + " 양식 전체 복사",
     pageInfo: (cur, total, count) => cur + " / " + total + " (" + count.toLocaleString() + "건)",
+    mallNames: { amazon: "아마존", ali: "알리익스프레스", ebay: "이베이", iherb: "아이허브" },
   },
   en: {
     detailPrefix: "Romanized: ",
@@ -46,6 +47,7 @@ window.I18N = {
     mapClose: "Hide map ▴",
     copyAll: (name) => "Copy all " + name + " fields",
     pageInfo: (cur, total, count) => cur + " / " + total + " (" + count.toLocaleString() + " results)",
+    mallNames: { amazon: "Amazon", ali: "AliExpress", ebay: "eBay", iherb: "iHerb" },
   },
   ja: {
     detailPrefix: "英語表記: ",
@@ -69,6 +71,7 @@ window.I18N = {
     mapClose: "地図を閉じる ▴",
     copyAll: (name) => name + " の入力欄を一括コピー",
     pageInfo: (cur, total, count) => cur + " / " + total + " (" + count.toLocaleString() + "件)",
+    mallNames: { amazon: "Amazon", ali: "AliExpress", ebay: "eBay", iherb: "iHerb" },
   },
 };
 

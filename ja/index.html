@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>韓国住所 英語変換（道路名・地番）— 無料</title>
+  <meta name="description" content="韓国の住所を標準的な英語表記に無料で変換。道路名住所・地番・郵便番号を英語にして、Amazon・AliExpress・EMS発送・ビザ書類にそのまま使えます。">
+  <meta name="keywords" content="韓国 住所 英語, 韓国住所 英語変換, korean address english, 韓国 住所 英語表記, 韓国 郵便番号 英語">
+  <link rel="canonical" href="https://example.com/ja/">
+  <link rel="alternate" hreflang="ko" href="https://example.com/">
+  <link rel="alternate" hreflang="en" href="https://example.com/en/">
+  <link rel="alternate" hreflang="ja" href="https://example.com/ja/">
+  <link rel="alternate" hreflang="x-default" href="https://example.com/">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="韓国住所 英語変換 — 無料">
+  <meta property="og:description" content="韓国の住所を標準的な英語表記に変換。Amazon・AliExpress・EMS・ビザ書類に。">
+  <meta property="og:image" content="https://example.com/og-image.png">
+  <link rel="stylesheet" href="../style.css">
+  <style>.lang-switch{margin-top:.6rem;font-size:.85rem}.lang-switch a{color:#cbd5e1;text-decoration:none;margin:0 .3rem}.lang-switch b{color:#fff;margin:0 .3rem}</style>
+</head>
+<body>
+  <header>
+    <h1>韓国住所 → 英語変換</h1>
+    <p class="tagline">韓国の住所を入力すると、標準的な英語表記に変換します。</p>
+    <p class="lang-switch"><a href="../">한국어</a> · <a href="../en/">English</a> · <b>日本語</b></p>
+  </header>
+
+  <main>
+    <section class="search-box">
+      <form id="search-form" role="search">
+        <input type="text" id="keyword" name="keyword"
+               placeholder="例）세종대로 110、도곡동 467-1"
+               autocomplete="off" autofocus required minlength="2">
+        <button type="submit" id="search-btn">変換</button>
+      </form>
+      <input type="text" id="detail" class="detail-input"
+             placeholder="詳細住所（任意）例）101동 1001호 / Apt 101-1001" autocomplete="off">
+      <p id="detail-preview" class="hint" hidden>英語表記: <strong id="detail-preview-text"></strong></p>
+      <p class="hint">道路名・地番・建物名で検索できます。結果は <strong>Amazon / AliExpress</strong> の入力欄にそのまま対応します。</p>
+      <div id="recent" class="recent" hidden>
+        <span class="recent-label">最近の検索</span>
+        <span id="recent-chips"></span>
+      </div>
+    </section>
+
+    <aside class="ad-slot" id="ad-top" aria-hidden="true"></aside>
+
+    <section id="status" class="status" hidden></section>
+    <section id="results" class="results" aria-live="polite"></section>
+    <nav id="pagination" class="pagination" hidden>
+      <button id="prev-page" type="button">前へ</button>
+      <span id="page-info"></span>
+      <button id="next-page" type="button">次へ</button>
+    </nav>
+
+    <section class="tool-extra">
+      <h2>韓国語の氏名・電話番号を変換</h2>
+      <p class="hint">海外発送の住所には、英語の氏名と +82 の国際電話形式が必要です。</p>
+      <div class="extra-row">
+        <input type="text" id="kname" placeholder="韓国語の氏名 例）홍길동" autocomplete="off">
+        <output id="kname-out" for="kname"></output>
+        <button type="button" class="copy-btn" id="kname-copy" hidden>コピー</button>
+      </div>
+      <div class="extra-row">
+        <input type="tel" id="kphone" placeholder="電話番号 例）010-1234-5678" autocomplete="off">
+        <output id="kphone-out" for="kphone"></output>
+        <button type="button" class="copy-btn" id="kphone-copy" hidden>コピー</button>
+      </div>
+      <p class="hint">パスポートがある場合は、パスポートの英字氏名をそのままお使いください。</p>
+    </section>
+
+    <aside class="ad-slot" id="ad-bottom" aria-hidden="true"></aside>
+
+    <section class="seo-content">
+      <h2>英語の住所はいつ必要？</h2>
+      <ul>
+        <li><strong>海外通販</strong> — Amazon・eBay・AliExpress の配送先入力</li>
+        <li><strong>国際配送・EMS</strong> — 海外から韓国へ荷物を受け取るとき</li>
+        <li><strong>ビザ・留学書類</strong> — 英語の居住証明が必要なとき</li>
+        <li><strong>カード請求先</strong> — 海外カード決済の請求先住所</li>
+      </ul>
+
+      <h2>韓国の住所を英語で書く方法</h2>
+      <p>韓国の住所は大きい単位から書きますが、英語では小さい単位から書きます。
+      例えば <em>서울특별시 중구 세종대로 110</em> は
+      <em>110 Sejong-daero, Jung-gu, Seoul</em> となります。
+      部屋番号などの詳細は先頭に付けます（例：<em>Apt 101-1001, 110 Sejong-daero, …</em>）。</p>
+
+      <h2>よくある質問</h2>
+      <h3>変換結果は公式ですか？</h3>
+      <p>はい。韓国の公式な道路名住所システム（juso.go.kr）のデータを使用しているため、政府基準の英語表記です。</p>
+      <h3>郵便番号もわかりますか？</h3>
+      <p>はい、各結果に5桁の郵便番号が表示されます。</p>
+    </section>
+  </main>
+
+  <footer>
+    <p><a href="../">한국어</a> · <a href="../en/">English</a></p>
+    <p>住所データ：韓国 道路名住所システム（juso.go.kr）</p>
+    <p>&copy; <span id="year"></span> 韓国住所 英語変換</p>
+  </footer>
+
+  <script src="../config.js"></script>
+  <script src="../i18n.js"></script>
+  <script src="../convert.js"></script>
+  <script src="../app.js"></script>
+</body>
+</html>
