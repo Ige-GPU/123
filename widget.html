@@ -17,11 +17,21 @@
     .w-card { margin-top: 10px; border: 1px solid #e5e7eb; border-radius: 8px; padding: 10px 12px; }
     .w-eng { font-size: 15px; word-break: break-all; }
     .w-zip { font-size: 13px; color: #6b7280; margin-top: 4px; }
+    .w-more { display: inline-block; margin-top: 8px; font-size: 13px; font-weight: 600;
+      color: #2563eb; text-decoration: none; }
+    .w-more:hover { text-decoration: underline; }
+    .w-brand { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+    .w-brand img { width: 18px; height: 18px; }
+    .w-brand a { font-size: 14px; font-weight: 700; color: #0f172a; text-decoration: none; }
     .w-credit { margin-top: 10px; font-size: 11px; color: #9ca3af; text-align: right; }
     .w-credit a { color: #6b7280; text-decoration: none; }
   </style>
 </head>
 <body>
+  <div class="w-brand">
+    <img src="favicon.svg" alt="">
+    <a href="https://example.com/" target="_blank" rel="noopener" id="wbrand">영문주소 변환기</a>
+  </div>
   <form class="w-form" id="wf">
     <input type="text" id="wk" placeholder="한글 주소 입력 (예: 세종대로 110)" autocomplete="off" required>
     <button type="submit" id="wb">변환</button>
@@ -35,6 +45,9 @@
   (function () {
     var f = document.getElementById("wf"), k = document.getElementById("wk"),
         s = document.getElementById("ws"), r = document.getElementById("wr");
+
+    // 브랜드/출처 링크를 설정값으로 통일
+    document.getElementById("wbrand").href = JUSO_CONFIG.siteUrl;
 
     f.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -50,9 +63,13 @@
         if (!j) { s.textContent = "검색 결과가 없습니다."; return; }
         s.textContent = "";
         var eng = j.roadAddr + (j.zipNo ? ", " + j.zipNo : "") + ", Republic of Korea";
+        var more = JUSO_CONFIG.siteUrl + "?q=" + encodeURIComponent(kw);
         r.innerHTML = '<div class="w-card"><div class="w-eng"></div>' +
-          (j.zipNo ? '<div class="w-zip">우편번호 ' + j.zipNo + '</div>' : '') + '</div>';
+          (j.zipNo ? '<div class="w-zip">우편번호 ' + j.zipNo + '</div>' : '') +
+          '<a class="w-more" target="_blank" rel="noopener">＋ 동·호수, 쇼핑몰 양식, 영문 이름까지 변환 →</a>' +
+          '</div>';
         r.querySelector(".w-eng").textContent = eng;
+        r.querySelector(".w-more").href = more;
       }, function () { s.textContent = "주소 서버에 연결하지 못했습니다."; });
     });
 
