@@ -1,0 +1,16 @@
+{
+  "name": "korean-name-romanizer",
+  "version": "1.0.0",
+  "description": "한글 이름을 여권식 로마자로 변환하는 가벼운 라이브러리 (Korean name to passport-style romanization)",
+  "type": "module",
+  "main": "korean-name-romanizer.js",
+  "exports": "./korean-name-romanizer.js",
+  "files": ["korean-name-romanizer.js"],
+  "keywords": [
+    "korean", "romanization", "romanize", "hangul", "name", "passport",
+    "한글", "로마자", "이름", "영문이름", "여권"
+  ],
+  "homepage": "https://example.com/",
+  "license": "MIT",
+  "sideEffects": false
+}
