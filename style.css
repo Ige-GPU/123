@@ -6,6 +6,52 @@
   --bg: #f9fafb;
   --card: #ffffff;
   --border: #e5e7eb;
+  --status-bg: #fef3c7;
+  --status-text: #1f2937;
+  --mall-bg: #eff6ff;
+  --mall-border: #bfdbfe;
+  --map-bg: #ecfdf5;
+  --map-border: #a7f3d0;
+  --map-color: #047857;
+  color-scheme: light;
+}
+
+/* 다크모드: 시스템 설정 자동 대응(사용자가 라이트로 고정하지 않은 경우) + 수동 [data-theme=dark] */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --primary: #60a5fa;
+    --primary-dark: #3b82f6;
+    --text: #e5e7eb;
+    --text-light: #9ca3af;
+    --bg: #0f172a;
+    --card: #1e293b;
+    --border: #334155;
+    --status-bg: #3b341a;
+    --status-text: #fde68a;
+    --mall-bg: #1e3a5f;
+    --mall-border: #2c4a73;
+    --map-bg: #11302a;
+    --map-border: #1f5048;
+    --map-color: #6ee7b7;
+    color-scheme: dark;
+  }
+}
+[data-theme="dark"] {
+  --primary: #60a5fa;
+  --primary-dark: #3b82f6;
+  --text: #e5e7eb;
+  --text-light: #9ca3af;
+  --bg: #0f172a;
+  --card: #1e293b;
+  --border: #334155;
+  --status-bg: #3b341a;
+  --status-text: #fde68a;
+  --mall-bg: #1e3a5f;
+  --mall-border: #2c4a73;
+  --map-bg: #11302a;
+  --map-border: #1f5048;
+  --map-color: #6ee7b7;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -69,7 +115,8 @@ main {
 .status {
   margin: 1.5rem 0;
   padding: 1rem;
-  background: #fef3c7;
+  background: var(--status-bg);
+  color: var(--status-text);
   border-radius: 10px;
   text-align: center;
 }
@@ -135,8 +182,8 @@ main {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--primary);
-  background: #eff6ff;
-  border: 1px solid #bfdbfe;
+  background: var(--mall-bg);
+  border: 1px solid var(--mall-border);
   border-radius: 8px;
   cursor: pointer;
 }
@@ -271,9 +318,9 @@ footer {
   min-height: 44px;
   font-size: 0.85rem;
   font-weight: 700;
-  color: #047857;
-  background: #ecfdf5;
-  border: 1px solid #a7f3d0;
+  color: var(--map-color);
+  background: var(--map-bg);
+  border: 1px solid var(--map-border);
   border-radius: 8px;
   cursor: pointer;
 }
@@ -478,3 +525,24 @@ footer {
 .lang-switch a { color: var(--text-light); text-decoration: none; margin: 0 0.3rem; }
 .lang-switch a:hover { color: var(--primary); }
 .lang-switch b { margin: 0 0.3rem; color: var(--primary-dark); }
+
+/* ---- 다크모드 토글 버튼 ---- */
+.theme-toggle {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 100;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.theme-toggle:hover { border-color: var(--primary); }

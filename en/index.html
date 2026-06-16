@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Korean Address to English Converter (Road / Lot) — Free</title>
   <meta name="description" content="Convert a Korean address into a standard English address for free. Get road-name, lot-number and ZIP code in English for Amazon, AliExpress, EMS shipping and visa forms.">
@@ -12,12 +13,38 @@
   <link rel="alternate" hreflang="ja" href="https://example.com/ja/">
   <link rel="alternate" hreflang="x-default" href="https://example.com/">
   <meta name="theme-color" content="#0f172a">
+  <link rel="manifest" href="/manifest.webmanifest">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <meta property="og:title" content="Korean Address to English Converter — Free">
   <meta property="og:description" content="Convert a Korean address into a standard English address for Amazon, AliExpress, EMS and visa forms.">
   <meta property="og:image" content="https://example.com/og-image.png">
   <link rel="stylesheet" href="../style.css">
   <style>.lang-switch{margin-top:.6rem;font-size:.85rem}.lang-switch a{color:#cbd5e1;text-decoration:none;margin:0 .3rem}.lang-switch b{color:#fff;margin:0 .3rem}</style>
+  <script src="../theme.js" defer></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are the results official?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Data comes from the official road-name address system of Korea (juso.go.kr), so the English spelling is the government-standard romanization."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I get the ZIP code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, the 5-digit postal code is shown with each result."
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <header>
@@ -96,6 +123,7 @@
   </main>
 
   <footer>
+    <p><a href="../batch.html">Bulk converter</a> · <a href="../english-region-names.html">Region name table</a> · <a href="../roads/index.html">Roads</a></p>
     <p><a href="../">한국어</a> · <a href="../ja/">日本語</a></p>
     <p>Address data: Korea road-name address system (juso.go.kr)</p>
     <p>&copy; <span id="year"></span> Korean Address Converter</p>

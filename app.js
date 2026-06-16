@@ -614,3 +614,10 @@
     statusEl.hidden = true;
   }
 })();
+
+// PWA: 서비스워커 등록 (오프라인 셸 + 설치)
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("/sw.js").catch(function () { /* 무시 */ });
+  });
+}

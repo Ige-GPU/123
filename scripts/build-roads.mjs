@@ -48,6 +48,7 @@ function page(r, prev, next) {
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(desc)}">
@@ -57,6 +58,7 @@ function page(r, prev, next) {
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(desc)}">
   <meta property="og:image" content="${SITE}/og-image.png">
+  <script src="../theme.js" defer></script>
   <link rel="stylesheet" href="../style.css">
   <script type="application/ld+json">
   {
@@ -139,12 +141,14 @@ function hub(list) {
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>도로명별 영문주소 목록 - 전국 주요 도로</title>
   <meta name="description" content="전국 주요 도로명의 영문주소 표기와 우편번호를 한눈에. 세종대로, 테헤란로, 판교역로 등 도로별 영문주소 변환 페이지 모음.">
   <link rel="canonical" href="${SITE}/roads/index.html">
   <meta name="theme-color" content="#0f172a">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <script src="../theme.js" defer></script>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>

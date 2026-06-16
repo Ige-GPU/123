@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>영문주소 대량 변환기 - 주소 여러 개 일괄 영문 변환</title>
   <meta name="description" content="한글 주소 여러 개를 한 번에 영문주소로 일괄 변환합니다. 고객 배송지, 발송 명단, 직원 명부를 붙여넣고 변환 후 CSV(엑셀)로 다운로드하세요. 무료.">
@@ -21,6 +22,39 @@
   <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
   <link rel="stylesheet" href="style.css">
+  <script src="theme.js" defer></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "한 번에 몇 건까지 변환되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "한 번에 50건까지 변환됩니다. 더 많으면 나눠서 변환하세요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "변환 결과는 정확한가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "행정안전부 공식 영문주소 데이터를 사용합니다. 단, 주소가 불완전하면 가장 유사한 결과 1건이 매칭되므로 중요한 발송 전에는 확인을 권합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "동·호수 같은 상세주소도 변환되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네. 주소 뒤에 | 101동 1001호처럼 적으면 Apt 101-1001로 자동 변환되어 영문주소 맨 앞에 붙습니다."
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <header>

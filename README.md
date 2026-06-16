@@ -85,3 +85,13 @@ juso.go.kr 무료 주소 DB를 같은 형식으로 변환해 넣으면 수만 �
 
 `example.com`을 실제 도메인으로 일괄 치환하세요(canonical, og:url, sitemap, build-roads.mjs의 `SITE`).
 Search Console 인증과 GA4는 각 HTML `<head>`의 주석 처리된 자리에 값만 채우면 됩니다.
+
+## 추가 기능 (상세주소·PWA·다크모드·SEO 마감)
+
+- **상세주소 파서 개선** (`convert.js`): 동·호·층·지하 + 가/나동(→A/B), 건물 단독 등 처리
+- **다크모드** (`theme.js` + CSS 변수): 시스템 설정 자동 대응 + 우측 상단 토글(localStorage 저장)
+- **PWA**: `manifest.webmanifest` + `sw.js`(오프라인 셸) + `icon-192/512.png` → 홈화면 설치 가능
+- **SEO 마감**:
+  - `ads.txt` (애드센스 — pub ID만 교체)
+  - FAQ 구조화데이터(FAQPage JSON-LD): index / batch / en / ja
+  - 다국어 내부링크: en·ja → 대량변환·표기표·도로 페이지

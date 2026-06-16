@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>韓国住所 英語変換（道路名・地番）— 無料</title>
   <meta name="description" content="韓国の住所を標準的な英語表記に無料で変換。道路名住所・地番・郵便番号を英語にして、Amazon・AliExpress・EMS発送・ビザ書類にそのまま使えます。">
@@ -12,12 +13,38 @@
   <link rel="alternate" hreflang="ja" href="https://example.com/ja/">
   <link rel="alternate" hreflang="x-default" href="https://example.com/">
   <meta name="theme-color" content="#0f172a">
+  <link rel="manifest" href="/manifest.webmanifest">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <meta property="og:title" content="韓国住所 英語変換 — 無料">
   <meta property="og:description" content="韓国の住所を標準的な英語表記に変換。Amazon・AliExpress・EMS・ビザ書類に。">
   <meta property="og:image" content="https://example.com/og-image.png">
   <link rel="stylesheet" href="../style.css">
   <style>.lang-switch{margin-top:.6rem;font-size:.85rem}.lang-switch a{color:#cbd5e1;text-decoration:none;margin:0 .3rem}.lang-switch b{color:#fff;margin:0 .3rem}</style>
+  <script src="../theme.js" defer></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "変換結果は公式ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。韓国の公式な道路名住所システム（juso.go.kr）のデータを使用しているため、政府基準の英語表記です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "郵便番号もわかりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、各結果に5桁の郵便番号が表示されます。"
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <header>
@@ -96,6 +123,7 @@
   </main>
 
   <footer>
+    <p><a href="../batch.html">一括変換</a> · <a href="../english-region-names.html">地域名 英語表</a> · <a href="../roads/index.html">道路名</a></p>
     <p><a href="../">한국어</a> · <a href="../en/">English</a></p>
     <p>住所データ：韓国 道路名住所システム（juso.go.kr）</p>
     <p>&copy; <span id="year"></span> 韓国住所 英語変換</p>

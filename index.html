@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>영문주소 변환기 - 한글 주소를 영어로 (도로명/지번)</title>
   <meta name="description" content="한글 주소를 영문 주소로 무료 변환. 도로명주소, 지번주소, 우편번호를 영어로 변환해 해외직구, 국제배송, 비자 신청에 바로 사용하세요.">
@@ -15,6 +16,7 @@
   <link rel="alternate" hreflang="ja" href="https://example.com/ja/">
   <link rel="alternate" hreflang="x-default" href="https://example.com/">
   <meta name="theme-color" content="#0f172a">
+  <link rel="manifest" href="/manifest.webmanifest">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="favicon.svg">
   <meta property="og:url" content="https://example.com/">
@@ -43,6 +45,39 @@
   <!-- AdSense: 승인 후 아래 주석을 해제하고 ca-pub ID를 입력하세요
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
   -->
+  <script src="theme.js" defer></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "변환 결과는 공식적인 주소인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네. 행정안전부 도로명주소 공식 데이터(juso.go.kr)를 사용하므로 정부에서 고시한 공식 영문 표기입니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "아파트 동·호수는 어떻게 쓰나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "검색 결과의 영문주소 앞에 직접 붙여 쓰면 됩니다. 예) Apt 102-1504, 를 주소 맨 앞에 추가하세요. 상세주소 칸에 한글로 입력하면 자동 변환됩니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "우편번호도 알 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네, 변환 결과에 5자리 우편번호가 함께 표시됩니다."
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <header>
