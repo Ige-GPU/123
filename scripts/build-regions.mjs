@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const SITE = "https://example.com"; // 배포 시 실제 도메인으로 교체
+const SITE = "https://jusoshift.com"; // 배포 시 실제 도메인으로 교체
 const regions = JSON.parse(readFileSync(join(ROOT, "regions-data.json"), "utf8"));
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 

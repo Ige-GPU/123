@@ -11,5 +11,5 @@ const JUSO_CONFIG = {
   endpoint: "https://business.juso.go.kr/addrlink/addrEngApiJsonp.do",
   countPerPage: 10,
   // 위젯에서 본 사이트로 유도할 주소 (배포 시 실제 도메인으로 교체)
-  siteUrl: "https://example.com/",
+  siteUrl: "https://jusoshift.com/",
 };

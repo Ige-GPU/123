@@ -1,7 +1,7 @@
 /*!
  * korean-name-romanizer
  * 한글 이름을 여권식 로마자로 변환합니다. (통용 성씨 표기 + 국어의 로마자 표기법)
- * MIT License · https://example.com/  (영문주소 변환기)
+ * MIT License · https://jusoshift.com/  (영문주소 변환기)
  */
 
 const CHO = ["g","kk","n","d","tt","r","m","b","pp","s","ss","","j","jj","ch","k","t","p","h"];
