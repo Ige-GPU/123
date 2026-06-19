@@ -546,3 +546,43 @@ footer {
   box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
 .theme-toggle:hover { border-color: var(--primary); }
+
+/* ---- 상단 내비게이션 (크롤 깊이 최소화 = 색인 유리) ---- */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+.site-nav-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+}
+.nav-logo {
+  font-weight: 700;
+  color: var(--primary-dark);
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 0.92rem;
+}
+.nav-links {
+  display: flex;
+  gap: 0.9rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-links a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 0.88rem;
+  white-space: nowrap;
+  padding: 0.2rem 0;
+}
+.nav-links a:hover { color: var(--primary); }
+.nav-links a[aria-current="page"] { color: var(--primary); font-weight: 600; }

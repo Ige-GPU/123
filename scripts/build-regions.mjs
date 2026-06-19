@@ -56,6 +56,7 @@ const html = `<!DOCTYPE html>
   </style>
 </head>
 <body>
+  <nav class="site-nav" aria-label="주요 메뉴"><div class="site-nav-inner"><a href="index.html" class="nav-logo">영문주소 변환기</a><div class="nav-links"><a href="index.html">홈</a><a href="batch.html">대량 변환</a><a href="english-region-names.html">표기표</a><a href="blog/index.html">블로그</a><a href="guide-amazon.html">직구 가이드</a></div></div></nav>
   <header>
     <h1>시·도 / 시·군·구 영문 표기 완전표</h1>
     <p class="tagline">영문주소 작성 시 헷갈리는 행정구역 영문 표기를 한 번에</p>
