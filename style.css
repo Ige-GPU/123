@@ -640,3 +640,6 @@ footer {
 .acc h3 { font-size: 0.95rem; margin: 0.8rem 0 0.2rem; }
 .acc p { margin: 0.2rem 0 0.4rem; }
 .seo-content:has(.acc) { margin-top: 2rem; padding-top: 0; border-top: none; }
+
+.foot-links { line-height: 1.9; margin-bottom: 0.4rem; }
+.foot-links a { white-space: nowrap; }

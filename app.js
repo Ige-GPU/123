@@ -10,7 +10,8 @@
   const nextBtn = document.getElementById("next-page");
   const pageInfo = document.getElementById("page-info");
 
-  document.getElementById("year").textContent = new Date().getFullYear();
+  var yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   // ---- 메인 탭 (주소 변환 / 이름·전화번호) ----
   (function () {
