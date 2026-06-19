@@ -586,3 +586,57 @@ footer {
 }
 .nav-links a:hover { color: var(--primary); }
 .nav-links a[aria-current="page"] { color: var(--primary); font-weight: 600; }
+
+/* ---- 메인 탭 ---- */
+.main-tabs {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+  border-bottom: 2px solid var(--border);
+}
+.main-tab {
+  flex: 1;
+  padding: 0.7rem 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-light);
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+}
+.main-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+/* ---- 접이식 설명 (아코디언) ---- */
+.acc {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 0.6rem;
+  background: var(--card);
+  overflow: hidden;
+}
+.acc > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.85rem 1.1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  position: relative;
+}
+.acc > summary::-webkit-details-marker { display: none; }
+.acc > summary::after {
+  content: "+";
+  position: absolute;
+  right: 1.1rem;
+  font-weight: 400;
+  color: var(--text-light);
+}
+.acc[open] > summary::after { content: "−"; }
+.acc > summary + *, .acc > summary ~ * { margin-left: 1.1rem; margin-right: 1.1rem; }
+.acc > :not(summary):last-child { margin-bottom: 0.9rem; }
+.acc ul { padding-left: 2.2rem; }
+.acc h3 { font-size: 0.95rem; margin: 0.8rem 0 0.2rem; }
+.acc p { margin: 0.2rem 0 0.4rem; }
+.seo-content:has(.acc) { margin-top: 2rem; padding-top: 0; border-top: none; }

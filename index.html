@@ -86,85 +86,96 @@
   </header>
 
   <main>
-    <section class="search-box">
-      <form id="search-form" role="search">
-        <input type="text" id="keyword" name="keyword"
-               placeholder="예) 세종대로 110, 도곡동 467-1, 정부서울청사"
-               autocomplete="off" autofocus required minlength="2">
-        <button type="submit" id="search-btn">변환</button>
-      </form>
-      <input type="text" id="detail" class="detail-input"
-             placeholder="상세주소 (선택) 예) 101동 1001호, 3층 302호" autocomplete="off">
-      <p id="detail-preview" class="hint" hidden>영문 표기: <strong id="detail-preview-text"></strong></p>
-      <p class="hint">도로명주소·지번주소·건물명 모두 검색 가능. 검색 결과에서 <strong>아마존·알리 입력 양식</strong>으로 바로 변환됩니다.</p>
-      <div id="recent" class="recent" hidden>
-        <span class="recent-label">최근 검색</span>
-        <span id="recent-chips"></span>
-      </div>
-    </section>
+    <div class="main-tabs" role="tablist">
+      <button class="main-tab active" id="tab-btn-addr" role="tab" aria-selected="true">주소 변환</button>
+      <button class="main-tab" id="tab-btn-name" role="tab" aria-selected="false">이름·전화번호 변환</button>
+    </div>
 
-    <!-- 광고 슬롯 (상단) -->
-    <aside class="ad-slot" id="ad-top" aria-hidden="true"></aside>
+    <div id="panel-addr" role="tabpanel">
+      <section class="search-box">
+        <form id="search-form" role="search">
+          <input type="text" id="keyword" name="keyword"
+                 placeholder="예) 세종대로 110, 도곡동 467-1, 정부서울청사"
+                 autocomplete="off" autofocus required minlength="2">
+          <button type="submit" id="search-btn">변환</button>
+        </form>
+        <input type="text" id="detail" class="detail-input"
+               placeholder="상세주소 (선택) 예) 101동 1001호, 3층 302호" autocomplete="off">
+        <p id="detail-preview" class="hint" hidden>영문 표기: <strong id="detail-preview-text"></strong></p>
+        <p class="hint">도로명·지번·건물명 모두 검색 가능. 결과에서 <strong>아마존·알리 양식</strong>으로 바로 변환됩니다.</p>
+        <div id="recent" class="recent" hidden>
+          <span class="recent-label">최근 검색</span>
+          <span id="recent-chips"></span>
+        </div>
+      </section>
 
-    <section id="status" class="status" hidden></section>
-    <section id="results" class="results" aria-live="polite"></section>
-    <nav id="pagination" class="pagination" hidden>
-      <button id="prev-page" type="button">이전</button>
-      <span id="page-info"></span>
-      <button id="next-page" type="button">다음</button>
-    </nav>
+      <aside class="ad-slot" id="ad-top" aria-hidden="true"></aside>
 
-    <section class="tool-extra">
-      <h2>영문 이름 · 전화번호 변환</h2>
-      <p class="hint">해외직구 배송지에는 영문 이름과 +82 국제전화 형식이 필요합니다.</p>
-      <div class="extra-row">
-        <input type="text" id="kname" placeholder="이름 예) 홍길동" autocomplete="off">
-        <output id="kname-out" for="kname"></output>
-        <button type="button" class="copy-btn" id="kname-copy" hidden>복사</button>
-      </div>
-      <div class="extra-row">
-        <input type="tel" id="kphone" placeholder="전화번호 예) 010-1234-5678" autocomplete="off">
-        <output id="kphone-out" for="kphone"></output>
-        <button type="button" class="copy-btn" id="kphone-copy" hidden>복사</button>
-      </div>
-      <p class="hint">이름은 여권 표기와 다를 수 있습니다. 여권이 있다면 여권의 영문 이름을 사용하세요.</p>
-    </section>
+      <section id="status" class="status" hidden></section>
+      <section id="results" class="results" aria-live="polite"></section>
+      <nav id="pagination" class="pagination" hidden>
+        <button id="prev-page" type="button">이전</button>
+        <span id="page-info"></span>
+        <button id="next-page" type="button">다음</button>
+      </nav>
+    </div>
 
-    <!-- 광고 슬롯 (하단) -->
+    <div id="panel-name" role="tabpanel" hidden>
+      <section class="tool-extra" style="margin-top:1.2rem">
+        <p class="hint" style="margin-top:0">해외직구 배송지에는 영문 이름과 +82 국제전화 형식이 필요합니다.</p>
+        <div class="extra-row">
+          <input type="text" id="kname" placeholder="이름 예) 홍길동" autocomplete="off">
+          <output id="kname-out" for="kname"></output>
+          <button type="button" class="copy-btn" id="kname-copy" hidden>복사</button>
+        </div>
+        <div class="extra-row">
+          <input type="tel" id="kphone" placeholder="전화번호 예) 010-1234-5678" autocomplete="off">
+          <output id="kphone-out" for="kphone"></output>
+          <button type="button" class="copy-btn" id="kphone-copy" hidden>복사</button>
+        </div>
+        <p class="hint">이름은 여권 표기와 다를 수 있습니다. 여권이 있다면 여권의 영문 이름을 사용하세요.</p>
+      </section>
+    </div>
+
     <aside class="ad-slot" id="ad-bottom" aria-hidden="true"></aside>
 
     <section class="seo-content">
-      <h2>영문주소는 언제 필요한가요?</h2>
-      <ul>
-        <li><strong>해외직구</strong> — 아마존, 이베이, 알리익스프레스 등 해외 쇼핑몰 배송지 입력</li>
-        <li><strong>국제배송·EMS</strong> — 해외에서 한국으로 물건을 받을 때</li>
-        <li><strong>비자·유학 서류</strong> — 영문 거주지 증명이 필요한 각종 서류</li>
-        <li><strong>해외 결제 빌링 주소</strong> — 해외 카드 결제 시 청구지 주소</li>
-      </ul>
+      <details class="acc">
+        <summary>영문주소는 언제 필요한가요?</summary>
+        <ul>
+          <li><strong>해외직구</strong> — 아마존, 이베이, 알리익스프레스 등 해외 쇼핑몰 배송지 입력</li>
+          <li><strong>국제배송·EMS</strong> — 해외에서 한국으로 물건을 받을 때</li>
+          <li><strong>비자·유학 서류</strong> — 영문 거주지 증명이 필요한 각종 서류</li>
+          <li><strong>해외 결제 빌링 주소</strong> — 해외 카드 결제 시 청구지 주소</li>
+        </ul>
+      </details>
 
-      <h2>영문주소 쓰는 법</h2>
-      <p>
-        한국식 주소는 큰 단위(시/도)부터 쓰지만, 영문주소는 반대로 작은 단위부터 씁니다.
-        예를 들어 <em>서울특별시 중구 세종대로 110</em>은
-        <em>110 Sejong-daero, Jung-gu, Seoul</em>이 됩니다.
-        상세주소(동·호수)는 맨 앞에 붙입니다. 예) <em>#101-1001, 110 Sejong-daero, …</em>
-      </p>
+      <details class="acc">
+        <summary>영문주소 쓰는 법</summary>
+        <p>한국식 주소는 큰 단위(시/도)부터 쓰지만, 영문주소는 반대로 작은 단위부터 씁니다.
+        예를 들어 <em>서울특별시 중구 세종대로 110</em>은 <em>110 Sejong-daero, Jung-gu, Seoul</em>이 됩니다.
+        상세주소(동·호수)는 맨 앞에 붙입니다. 예) <em>#101-1001, 110 Sejong-daero, …</em></p>
+      </details>
 
-      <h2>해외직구 가이드</h2>
-      <ul>
-        <li><a href="batch.html">영문주소 대량 변환기 (여러 주소 일괄 변환)</a></li>
-        <li><a href="guide-amazon.html">아마존 직구 주소 입력 방법 (단계별)</a></li>
-        <li><a href="guide-aliexpress.html">알리익스프레스 배송지 설정 방법</a></li>
-        <li><a href="guide-pccc.html">개인통관고유부호 발급 방법과 입력 위치</a></li>
-      </ul>
+      <details class="acc">
+        <summary>해외직구 가이드</summary>
+        <ul>
+          <li><a href="batch.html">영문주소 대량 변환기 (여러 주소 일괄 변환)</a></li>
+          <li><a href="guide-amazon.html">아마존 직구 주소 입력 방법 (단계별)</a></li>
+          <li><a href="guide-aliexpress.html">알리익스프레스 배송지 설정 방법</a></li>
+          <li><a href="guide-pccc.html">개인통관고유부호 발급 방법과 입력 위치</a></li>
+        </ul>
+      </details>
 
-      <h2>자주 묻는 질문</h2>
-      <h3>변환 결과는 공식적인 주소인가요?</h3>
-      <p>네. 행정안전부 도로명주소 공식 데이터(juso.go.kr)를 사용하므로 정부에서 고시한 공식 영문 표기입니다.</p>
-      <h3>아파트 동·호수는 어떻게 쓰나요?</h3>
-      <p>검색 결과의 영문주소 앞에 직접 붙여 쓰면 됩니다. 예) <em>Apt 102-1504,</em> 를 주소 맨 앞에 추가.</p>
-      <h3>우편번호도 알 수 있나요?</h3>
-      <p>네, 변환 결과에 5자리 우편번호가 함께 표시됩니다.</p>
+      <details class="acc">
+        <summary>자주 묻는 질문</summary>
+        <h3>변환 결과는 공식적인 주소인가요?</h3>
+        <p>네. 행정안전부 도로명주소 공식 데이터(juso.go.kr)를 사용하므로 정부에서 고시한 공식 영문 표기입니다.</p>
+        <h3>아파트 동·호수는 어떻게 쓰나요?</h3>
+        <p>검색 결과의 영문주소 앞에 직접 붙여 쓰면 됩니다. 예) <em>Apt 102-1504,</em> 를 주소 맨 앞에 추가.</p>
+        <h3>우편번호도 알 수 있나요?</h3>
+        <p>네, 변환 결과에 5자리 우편번호가 함께 표시됩니다.</p>
+      </details>
     </section>
   </main>
 

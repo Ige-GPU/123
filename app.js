@@ -12,6 +12,25 @@
 
   document.getElementById("year").textContent = new Date().getFullYear();
 
+  // ---- 메인 탭 (주소 변환 / 이름·전화번호) ----
+  (function () {
+    var bAddr = document.getElementById("tab-btn-addr");
+    var bName = document.getElementById("tab-btn-name");
+    var pAddr = document.getElementById("panel-addr");
+    var pName = document.getElementById("panel-name");
+    if (!bAddr || !bName || !pAddr || !pName) return;
+    function show(addr) {
+      pAddr.hidden = !addr;
+      pName.hidden = addr;
+      bAddr.classList.toggle("active", addr);
+      bName.classList.toggle("active", !addr);
+      bAddr.setAttribute("aria-selected", addr);
+      bName.setAttribute("aria-selected", !addr);
+    }
+    bAddr.addEventListener("click", function () { show(true); });
+    bName.addEventListener("click", function () { show(false); });
+  })();
+
   // ---- 최근 검색 (localStorage) ----
   const RECENT_KEY = "recentSearches";
   const RECENT_MAX = 5;
