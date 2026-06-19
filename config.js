@@ -7,7 +7,7 @@
 // 3. 발급받은 승인키를 아래에 입력
 const JUSO_CONFIG = {
   // 개발 단계에서는 juso.go.kr이 제공하는 테스트 키를 신청해 넣으세요.
-  apiKey: "YOUR_JUSO_API_KEY",
+  apiKey: "U01TX0FVVEgyMDI2MDYxOTEzNDQwMjExOTQ2MDk=",
   endpoint: "https://business.juso.go.kr/addrlink/addrEngApiJsonp.do",
   countPerPage: 10,
   // 위젯에서 본 사이트로 유도할 주소 (배포 시 실제 도메인으로 교체)
