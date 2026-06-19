@@ -2,4 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://jusoshift.com/sitemap.xml
-Sitemap: https://jusoshift.com/sitemap-roads.xml

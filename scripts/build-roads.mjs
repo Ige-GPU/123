@@ -1,4 +1,7 @@
 // 도로명별 정적 SEO 페이지 생성기 (프로그래매틱 SEO)
+// ⚠️ 도로 페이지는 얇은 콘텐츠 위험으로 현재 사이트에서 제외됨.
+//    애드센스 승인 + 도메인 신뢰도 확보 후, 실제 주소 DB로 풍부하게 채워 재생성할 것.
+//    재생성 시 sitemap.xml/robots.txt/푸터에 다시 연결 필요.
 //
 // 사용법:  node scripts/build-roads.mjs
 // 입력:    roads-data.json  (ko, eng, sido, sigungu, zip, landmark)
