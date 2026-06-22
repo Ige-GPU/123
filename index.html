@@ -140,39 +140,55 @@
     <aside class="ad-slot" id="ad-bottom" aria-hidden="true"></aside>
 
     <section class="seo-content">
-      <details class="acc">
-        <summary>영문주소는 언제 필요한가요?</summary>
-        <ul>
-          <li><strong>해외직구</strong> — 아마존, 이베이, 알리익스프레스 등 해외 쇼핑몰 배송지 입력</li>
-          <li><strong>국제배송·EMS</strong> — 해외에서 한국으로 물건을 받을 때</li>
-          <li><strong>비자·유학 서류</strong> — 영문 거주지 증명이 필요한 각종 서류</li>
-          <li><strong>해외 결제 빌링 주소</strong> — 해외 카드 결제 시 청구지 주소</li>
-        </ul>
-      </details>
+      <h2>영문주소 변환기 — 한글 주소를 1초 만에 영문으로</h2>
+      <p>영문주소 변환기는 한글 주소(도로명·지번)를 입력하면 <strong>국제 표준 영문 주소</strong>로 즉시 바꿔주는 무료 도구입니다. 행정안전부 도로명주소 안내시스템(juso.go.kr)의 공식 데이터를 사용하므로, 결과는 정부가 고시한 <strong>공식 영문 표기</strong>입니다. 해외직구 배송지, 국제배송(EMS), 비자·유학 서류, 해외 카드 결제 청구지 등 영문 주소가 필요한 모든 상황에 그대로 사용할 수 있습니다.</p>
 
-      <details class="acc">
-        <summary>영문주소 쓰는 법</summary>
-        <p>한국식 주소는 큰 단위(시/도)부터 쓰지만, 영문주소는 반대로 작은 단위부터 씁니다.
-        예를 들어 <em>서울특별시 중구 세종대로 110</em>은 <em>110 Sejong-daero, Jung-gu, Seoul</em>이 됩니다.
-        상세주소(동·호수)는 맨 앞에 붙입니다. 예) <em>#101-1001, 110 Sejong-daero, …</em></p>
-      </details>
+      <h2>영문주소는 한글 주소와 순서가 반대입니다</h2>
+      <p>한국식 주소는 시·도 같은 <strong>큰 단위부터</strong> 쓰지만, 영문주소는 반대로 건물번호 같은 <strong>작은 단위부터</strong> 씁니다. 예를 들어 <em>서울특별시 중구 세종대로 110</em>은 영문으로 다음과 같이 작성합니다.</p>
+      <p style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.8rem 1rem">
+        <strong>110 Sejong-daero, Jung-gu, Seoul, 04524, Republic of Korea</strong>
+      </p>
+      <p>아파트 동·호수 같은 상세주소는 <strong>맨 앞</strong>에 붙여 <em>Apt 101-1001, 110 Sejong-daero, …</em>처럼 작성합니다. 끝에는 <strong>5자리 우편번호</strong>와 국가명(Republic of Korea)을 빠뜨리지 않아야 통관·배송이 지연되지 않습니다. 시·도는 <em>-do</em>(경기도 → Gyeonggi-do), 시는 <em>-si</em>, 구는 <em>-gu</em>로 음역되며, 서울 같은 광역시는 시 이름만 씁니다.</p>
 
-      <details class="acc">
-        <summary>해외직구 가이드</summary>
-        <ul>
-          <li><a href="batch.html">영문주소 대량 변환기 (여러 주소 일괄 변환)</a></li>
-          <li><a href="guide-amazon.html">아마존 직구 주소 입력 방법 (단계별)</a></li>
-          <li><a href="guide-aliexpress.html">알리익스프레스 배송지 설정 방법</a></li>
-          <li><a href="guide-pccc.html">개인통관고유부호 발급 방법과 입력 위치</a></li>
-        </ul>
-      </details>
+      <h2>이 변환기가 특별한 이유</h2>
+      <ul>
+        <li><strong>정부 공식 데이터</strong> — juso.go.kr 기반이라 도로명 철자·우편번호 오류가 없습니다.</li>
+        <li><strong>쇼핑몰별 자동 매핑</strong> — 아마존·알리익스프레스·이베이·아이허브의 입력칸(Address Line, City, State, ZIP)에 맞춰 결과를 자동으로 나눠, 칸마다 그대로 복사할 수 있습니다.</li>
+        <li><strong>상세주소·이름·전화번호까지</strong> — "101동 1001호" → <em>Apt 101-1001</em> 자동 변환, 한글 이름 로마자 변환, 010 → <em>+82</em> 전화번호 변환을 한 화면에서 처리합니다.</li>
+        <li><strong>대량 변환</strong> — 여러 주소를 한 번에 변환하고 엑셀(CSV)로 내려받을 수 있어, 고객 명단·발송 목록 작업에 편리합니다.</li>
+        <li><strong>한국어·영어·일본어 지원</strong> — 해외 거주자도 자신의 언어로 이용할 수 있습니다.</li>
+      </ul>
 
-      <details class="acc">
+      <h2>사용 방법</h2>
+      <ol style="padding-left:1.3rem">
+        <li>위 검색창에 한글 주소(도로명·지번·건물명)를 입력하고 <em>변환</em>을 누릅니다.</li>
+        <li>영문 주소와 우편번호가 나오면 항목별 복사 버튼으로 바로 복사합니다.</li>
+        <li>아파트라면 상세주소 칸에 "101동 1001호"를 입력해 동·호수까지 포함시킵니다.</li>
+        <li>쇼핑몰에 넣을 때는 "쇼핑몰 입력 양식"을 펼쳐 사이트별로 나눠진 값을 칸마다 복사합니다.</li>
+      </ol>
+
+      <h2>언제 영문주소가 필요한가요?</h2>
+      <ul>
+        <li><strong>해외직구</strong> — 아마존, 이베이, 알리익스프레스 등 해외 쇼핑몰 배송지 입력</li>
+        <li><strong>국제배송·EMS</strong> — 해외에서 한국으로 물건을 받을 때 수취인 주소</li>
+        <li><strong>비자·유학 서류</strong> — 영문 거주지 증명이 필요한 각종 서류</li>
+        <li><strong>해외 결제 빌링 주소</strong> — 해외 카드 결제 시 청구지 주소</li>
+      </ul>
+
+      <h2>해외직구 가이드 더 보기</h2>
+      <ul>
+        <li><a href="guide-amazon.html">아마존 직구 주소 입력 방법 (단계별)</a></li>
+        <li><a href="guide-aliexpress.html">알리익스프레스 배송지 설정 방법</a></li>
+        <li><a href="guide-pccc.html">개인통관고유부호 발급 방법과 입력 위치</a></li>
+        <li><a href="blog/index.html">주소·우편·해외배송 블로그 (15편)</a></li>
+      </ul>
+
+      <details class="acc" open>
         <summary>자주 묻는 질문</summary>
         <h3>변환 결과는 공식적인 주소인가요?</h3>
         <p>네. 행정안전부 도로명주소 공식 데이터(juso.go.kr)를 사용하므로 정부에서 고시한 공식 영문 표기입니다.</p>
         <h3>아파트 동·호수는 어떻게 쓰나요?</h3>
-        <p>검색 결과의 영문주소 앞에 직접 붙여 쓰면 됩니다. 예) <em>Apt 102-1504,</em> 를 주소 맨 앞에 추가.</p>
+        <p>검색 결과의 영문주소 앞에 직접 붙여 쓰면 됩니다. 예) <em>Apt 102-1504,</em> 를 주소 맨 앞에 추가하세요. 상세주소 칸에 한글로 입력하면 자동 변환됩니다.</p>
         <h3>우편번호도 알 수 있나요?</h3>
         <p>네, 변환 결과에 5자리 우편번호가 함께 표시됩니다.</p>
       </details>
